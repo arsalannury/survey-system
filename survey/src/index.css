@@ -5,3 +5,11 @@
   box-sizing: border-box;
   font-size: 16px;
 }
+.custom-shape-divider-top-1670095365 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+}
