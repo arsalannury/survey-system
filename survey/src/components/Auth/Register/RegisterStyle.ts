@@ -138,12 +138,6 @@ export const WaveBox = {
   height: '101%',
 } as const;
 
-export const WaveImage = {
-  position: 'absolute',
-  transform: 'rotate(90deg) translateY(265px) translateX(260px)',
-  objectFit: 'cover',
-} as const;
-
 export const LogoUiImage = {
   position: 'absolute',
   height: '100%',
