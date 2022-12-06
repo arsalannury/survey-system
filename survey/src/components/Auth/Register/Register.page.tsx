@@ -1,5 +1,5 @@
 import React from 'react';
-import {Grid,Box} from '@mui/material';
+import {Grid} from '@mui/material';
 import RegisterForm from './RegisterForm';
 
 const RegisterPage: React.FC<any> = () => {
@@ -8,7 +8,8 @@ const RegisterPage: React.FC<any> = () => {
     <Grid 
     container
     alignItems={"center"}
-    justifyContent={"space-between"}>
+    justifyContent={"space-between"}
+    >
      <Grid item xs={12} sm={12} md={6} lg={6}>
       <RegisterForm />
      </Grid>

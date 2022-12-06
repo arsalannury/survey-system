@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Button, Grid, Typography } from '@mui/material';
+import { Box, Button, Grid, TextField, Typography } from '@mui/material';
 import {
   RegisterFormBox,
   DefaultTypography,
@@ -41,8 +41,9 @@ const RegisterForm: React.FC<any> = () => {
       </Box>
       <Box sx={FormStyle} component={'form'}>
         <Box sx={NameInputs}>
-          <Box sx={NameInputsBox}>
-            <input
+          <Box sx={{ ...NameInputsBox, marginRight: '25px' }}>
+            <TextField
+            variant="outlined"
               style={InputStyle}
               placeholder="first name"
               type="text"
@@ -52,7 +53,8 @@ const RegisterForm: React.FC<any> = () => {
             {BadgeIcon}
           </Box>
           <Box sx={NameInputsBox}>
-            <input
+            <TextField
+            variant="outlined"
               style={InputStyle}
               placeholder="last name"
               type="text"
@@ -63,7 +65,8 @@ const RegisterForm: React.FC<any> = () => {
           </Box>
         </Box>
         <Box sx={RegisterFormBox}>
-          <input
+          <TextField
+          variant="outlined"
             style={InputStyle.emailandPassword}
             placeholder="email"
             type="text"
@@ -73,7 +76,8 @@ const RegisterForm: React.FC<any> = () => {
           {BadgeIconEmail}
         </Box>
         <Box sx={RegisterFormBox}>
-          <input
+          <TextField
+          variant="outlined"
             style={InputStyle.emailandPassword}
             placeholder="password"
             type="text"

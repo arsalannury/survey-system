@@ -4,15 +4,16 @@ export const RegisterFormBox = {
   justifyContent: 'space-around',
   flexDirection: 'column',
   position: 'relative',
-  width: '100%',
+  width: '85%',
   padding: '15px 0',
 } as const;
 
 export const RegisterIcons = {
   position: 'absolute',
   zIndex: '1',
-  opacity: '.7',
-  right: '-15px',
+  background: '#fff',
+  // opacity: '.7',
+  right: '0',
 } as const;
 
 export const RegisterHeader = {
@@ -96,19 +97,17 @@ export const InputStyle = {
     borderRadius: '10px',
     fontSize: '.9em',
     color: '#777',
-    width: '70%',
+    width: '100%',
     alignSelf: 'baseline',
   },
 } as const;
 
 export const NameInputsBox = {
-  margin: '0 15px 0 0',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-around',
-  flexDirection: 'column',
   position: 'relative',
-};
+} as const;
 
 export const NameInputs = {
   display: 'flex',
@@ -120,8 +119,15 @@ export const NameInputs = {
 export const CreateAccountButtonWrapper = {
   width: '100%',
   padding: '15px 0 0 0',
+  display: 'flex',
+  alignItems: 'center',
 } as const;
 
+// register.page styles
+
+export const RegisterMainGrid = {
+  overflow: 'hidden',
+} as const;
 // #2176ff
 // #003566
 // #023e8a

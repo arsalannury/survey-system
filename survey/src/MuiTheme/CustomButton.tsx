@@ -6,13 +6,14 @@ type Children = {
 
 const theme = createTheme({
   components: {
-    MuiButtonBase: {
+    MuiButton: {
       styleOverrides: {
         root: {
           fontFamily: 'unset',
           borderRadius: '25px',
           textTransform: 'capitalize',
           background: '#2176ff',
+          boxShadow: "none"
         },
       },
     },
