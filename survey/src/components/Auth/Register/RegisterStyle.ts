@@ -1,3 +1,5 @@
+import { Hands } from '../../../assets/exporter';
+
 export const RegisterFormBox = {
   display: 'flex',
   alignItems: 'center',
@@ -44,7 +46,7 @@ export const LoginTypography = {
 
 export const SurveyLogoStyle = {
   width: '50px',
-  marginRight: '20px',
+  marginRight: '10px',
 } as const;
 
 export const TextsBox = {
@@ -128,6 +130,26 @@ export const CreateAccountButtonWrapper = {
 export const RegisterMainGrid = {
   overflow: 'hidden',
 } as const;
+
+// register wave ui styles
+
+export const WaveBox = {
+  position: 'relative',
+  height: '101%',
+} as const;
+
+export const WaveImage = {
+  position: 'absolute',
+  transform: 'rotate(90deg) translateY(265px) translateX(260px)',
+  objectFit: 'cover',
+} as const;
+
+export const LogoUiImage = {
+  position: 'absolute',
+  height: '100%',
+  width: '100%',
+} as const;
+
 // #2176ff
 // #003566
 // #023e8a
