@@ -9,7 +9,7 @@ const theme = createTheme({
         MuiFormHelperText: {
             styleOverrides: {
                 root: {
-                    fontFamily: 'unset',
+                    fontFamily: 'FONT_FAMILY_LIGHT',
                 },
             },
         },

@@ -1,5 +1,3 @@
-import { Hands } from '../../../assets/exporter';
-
 export const RegisterFormBox = {
   display: 'flex',
   alignItems: 'center',
@@ -14,7 +12,6 @@ export const RegisterIcons = {
   position: 'absolute',
   zIndex: '1',
   background: '#fff',
-  // opacity: '.7',
   right: '0',
 } as const;
 
@@ -91,17 +88,11 @@ export const InputStyle = {
   borderRadius: '10px',
   fontSize: '.9em',
   color: '#777',
-  emailandPassword: {
-    border: '0',
-    outline: 'none',
-    padding: '15px',
-    background: '#fff',
-    borderRadius: '10px',
-    fontSize: '.9em',
-    color: '#777',
-    width: '100%',
-    alignSelf: 'baseline',
-  },
+  "& .MuiInputBase-input" : {
+  "&::placeholder" : {
+    opacity:0.4
+  }
+  }
 } as const;
 
 export const NameInputsBox = {

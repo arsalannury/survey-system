@@ -21,7 +21,7 @@ import {
 } from './RegisterStyle';
 import {SurveyLogo} from '../../../assets/exporter';
 import {Link} from 'react-router-dom';
-import {BadgeIcon, BadgeIconEmail, BadgeIconPassword} from './RegisterIcons';
+import {BadgeIcon, BadgeIconEmail, BadgeIconPassword, BadgeIconUerName} from './RegisterIcons';
 import CustomButton from '../../../MuiTheme/CustomButton';
 import {yupResolver} from "@hookform/resolvers/yup";
 
@@ -31,12 +31,14 @@ const RegisterForm: React.FC<any> = () => {
     const schema = yup.object().shape({
         firstName: yup.string().required("enter your name"),
         lastName: yup.string().required("enter your last name"),
+        username: yup.string().min(4).required("enter your user name"),
         email: yup.string().email("email format is incorrect").required("enter your email address"),
-        password: yup.string().required("enter your password")
+        password: yup.string().min(8).max(20).required("enter your password")
     }).required()
     const defaultValues = {
         firstName: '',
         lastName: "",
+        username: "",
         email: "",
         password: ""
     }
@@ -78,7 +80,7 @@ const RegisterForm: React.FC<any> = () => {
                                 <TextField
                                 id="firstName"
                                 placeholder="first name"
-                                style={InputStyle}
+                                sx={InputStyle}
                                 variant="outlined" {...field}
                                 error={!!errors.firstName}
                                 helperText={errors?.firstName?.message}
@@ -94,7 +96,7 @@ const RegisterForm: React.FC<any> = () => {
                                 <TextField
                                 id="lastName"
                                 placeholder="last name"
-                                style={InputStyle}
+                                sx={InputStyle}
                                 variant="outlined" {...field}
                                 error={!!errors.lastName}
                                 helperText={errors?.lastName?.message}
@@ -111,7 +113,7 @@ const RegisterForm: React.FC<any> = () => {
                         <TextField
                         id="emailId"
                         placeholder="email"
-                        style={InputStyle.emailandPassword}
+                        sx={{...InputStyle, width: '100%', alignSelf: 'baseline'}}
                         variant="outlined" {...field}
                         error={!!errors.email}
                         helperText={errors?.email?.message}
@@ -119,6 +121,22 @@ const RegisterForm: React.FC<any> = () => {
                     />
                     {BadgeIconEmail}
                 </Box>
+                    <Box sx={RegisterFormBox}>
+                        <Controller
+                            name="username"
+                            control={control}
+                            render={({field}) =>
+                                <TextField
+                                    id="username"
+                                    placeholder="user name"
+                                    sx={{...InputStyle, width: '100%', alignSelf: 'baseline'}}
+                                    variant="outlined" {...field}
+                                    error={!!errors.username}
+                                    helperText={errors?.username?.message}
+                                />}
+                        />
+                        {BadgeIconUerName}
+                    </Box>
                 <Box sx={RegisterFormBox}>
                     <Controller
                         name="password"
@@ -127,7 +145,7 @@ const RegisterForm: React.FC<any> = () => {
                         <TextField
                         id="passwordId"
                         placeholder="password"
-                        style={InputStyle.emailandPassword}
+                        sx={{...InputStyle, width: '100%', alignSelf: 'baseline'}}
                         variant="outlined" {...field}
                         error={!!errors.password}
                         helperText={errors?.password?.message}
