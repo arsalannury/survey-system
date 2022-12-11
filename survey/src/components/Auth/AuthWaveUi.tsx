@@ -1,9 +1,9 @@
 import React from 'react';
 import { Box } from '@mui/material';
-import { WaveBox, LogoUiImage } from './RegisterStyle';
-import { Diffrent } from '../../../assets/exporter';
+import { WaveBox, LogoUiImage } from './AuthStyle';
+import { Diffrent } from '../../assets/exporter';
 
-const RegisterWaveUi = () => {
+const AuthWaveUi = () => {
   return (
     <>
       <Box sx={WaveBox}>
@@ -13,4 +13,4 @@ const RegisterWaveUi = () => {
   );
 };
 
-export default RegisterWaveUi;
+export default AuthWaveUi;

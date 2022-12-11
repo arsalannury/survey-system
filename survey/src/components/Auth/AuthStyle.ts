@@ -70,6 +70,7 @@ export const LinkStyle = {
   color: '#2176ff',
   textDecoration: 'none',
   marginLeft: '.3em',
+  cursor: "pointer"
 } as const;
 
 export const FormStyle = {

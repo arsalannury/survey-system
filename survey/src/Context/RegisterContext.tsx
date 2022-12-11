@@ -1,12 +1,12 @@
 import React, {createContext, useContext} from "react";
-import {useMutation} from "react-query";
+import {useMutation, UseMutationResult} from "react-query";
+import axios, {AxiosResponse} from "axios";
 type Children = {
     children: React.ReactNode;
 };
 
 
 const RegisterContext = createContext({
-
 });
 
 export default function useRegisterContext() {
@@ -14,6 +14,14 @@ export default function useRegisterContext() {
 }
 
 export const RegisterContextProvider = ({children}: Children) => {
+
+    const addUserToDatabase = (userData : any) => {
+       return axios.post(userData);
+    }
+
+    const useAddUserToDatabase = (): UseMutationResult<AxiosResponse<any>, unknown, any, unknown> => {
+        return useMutation(addUserToDatabase);
+    }
 
     return (
         <RegisterContext.Provider

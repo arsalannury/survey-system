@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import * as yup from "yup";
 import MUIHelperText from "../../../MuiTheme/MUIHelperText";
 import {Box, Button, Grid, TextField, Typography} from '@mui/material';
@@ -18,15 +18,21 @@ import {
     RegisterHeader,
     SurveyLogoStyle,
     TextsBox,
-} from './RegisterStyle';
+} from '../AuthStyle';
 import {SurveyLogo} from '../../../assets/exporter';
-import {Link} from 'react-router-dom';
-import {BadgeIcon, BadgeIconEmail, BadgeIconPassword, BadgeIconUerName} from './RegisterIcons';
+import {BadgeIcon, BadgeIconEmail, BadgeIconPassword, BadgeIconUerName} from '../AuthIcons';
 import CustomButton from '../../../MuiTheme/CustomButton';
 import {yupResolver} from "@hookform/resolvers/yup";
+import {RegisterFormProps} from "../../../Interfaces/AuthInterface";
+import useRegisterContext from "../../../Context/RegisterContext";
 
 
-const RegisterForm: React.FC<any> = () => {
+const RegisterForm: React.FC<RegisterFormProps> = ({handleShowAuthChange}) => {
+
+    useEffect(() => {
+        return () => {
+        }
+    })
 
     const schema = yup.object().shape({
         firstName: yup.string().required("enter your name"),
@@ -64,63 +70,63 @@ const RegisterForm: React.FC<any> = () => {
                 </Typography>
                 <Typography sx={LoginTypography}>
                     Already A Member ?{' '}
-                    <Link style={LinkStyle} to={'/'}>
+                    <span style={LinkStyle} onClick={() => handleShowAuthChange("show-login")}>
                         Log In
-                    </Link>
+                    </span>
                 </Typography>
             </Box>
             <Box onSubmit={handleSubmit(onSubmitData)} sx={FormStyle} component={'form'}>
                 <MUIHelperText>
-                <Box sx={NameInputs}>
-                    <Box sx={{...NameInputsBox, marginRight: '25px'}}>
+                    <Box sx={NameInputs}>
+                        <Box sx={{...NameInputsBox, marginRight: '25px'}}>
+                            <Controller
+                                name="firstName"
+                                control={control}
+                                render={({field}) =>
+                                    <TextField
+                                        id="firstName"
+                                        placeholder="first name"
+                                        sx={InputStyle}
+                                        variant="outlined" {...field}
+                                        error={!!errors.firstName}
+                                        helperText={errors?.firstName?.message}
+                                    />}
+                            />
+                            {BadgeIcon}
+                        </Box>
+                        <Box sx={NameInputsBox}>
+                            <Controller
+                                name="lastName"
+                                control={control}
+                                render={({field}) =>
+                                    <TextField
+                                        id="lastName"
+                                        placeholder="last name"
+                                        sx={InputStyle}
+                                        variant="outlined" {...field}
+                                        error={!!errors.lastName}
+                                        helperText={errors?.lastName?.message}
+                                    />}
+                            />
+                            {BadgeIcon}
+                        </Box>
+                    </Box>
+                    <Box sx={RegisterFormBox}>
                         <Controller
-                            name="firstName"
+                            name="email"
                             control={control}
                             render={({field}) =>
                                 <TextField
-                                id="firstName"
-                                placeholder="first name"
-                                sx={InputStyle}
-                                variant="outlined" {...field}
-                                error={!!errors.firstName}
-                                helperText={errors?.firstName?.message}
+                                    id="emailId"
+                                    placeholder="email"
+                                    sx={{...InputStyle, width: '100%', alignSelf: 'baseline'}}
+                                    variant="outlined" {...field}
+                                    error={!!errors.email}
+                                    helperText={errors?.email?.message}
                                 />}
                         />
-                        {BadgeIcon}
+                        {BadgeIconEmail}
                     </Box>
-                    <Box sx={NameInputsBox}>
-                        <Controller
-                            name="lastName"
-                            control={control}
-                            render={({field}) =>
-                                <TextField
-                                id="lastName"
-                                placeholder="last name"
-                                sx={InputStyle}
-                                variant="outlined" {...field}
-                                error={!!errors.lastName}
-                                helperText={errors?.lastName?.message}
-                                />}
-                        />
-                        {BadgeIcon}
-                    </Box>
-                </Box>
-                <Box sx={RegisterFormBox}>
-                    <Controller
-                        name="email"
-                        control={control}
-                        render={({field}) =>
-                        <TextField
-                        id="emailId"
-                        placeholder="email"
-                        sx={{...InputStyle, width: '100%', alignSelf: 'baseline'}}
-                        variant="outlined" {...field}
-                        error={!!errors.email}
-                        helperText={errors?.email?.message}
-                        />}
-                    />
-                    {BadgeIconEmail}
-                </Box>
                     <Box sx={RegisterFormBox}>
                         <Controller
                             name="username"
@@ -137,29 +143,29 @@ const RegisterForm: React.FC<any> = () => {
                         />
                         {BadgeIconUerName}
                     </Box>
-                <Box sx={RegisterFormBox}>
-                    <Controller
-                        name="password"
-                        control={control}
-                        render={({field}) =>
-                        <TextField
-                        id="passwordId"
-                        placeholder="password"
-                        sx={{...InputStyle, width: '100%', alignSelf: 'baseline'}}
-                        variant="outlined" {...field}
-                        error={!!errors.password}
-                        helperText={errors?.password?.message}
-                        />}
-                    />
-                    {BadgeIconPassword}
-                </Box>
-                <Box sx={CreateAccountButtonWrapper}>
-                    <CustomButton>
-                        <Button type="submit" variant="contained">
-                            Create account
-                        </Button>
-                    </CustomButton>
-                </Box>
+                    <Box sx={RegisterFormBox}>
+                        <Controller
+                            name="password"
+                            control={control}
+                            render={({field}) =>
+                                <TextField
+                                    id="passwordId"
+                                    placeholder="password"
+                                    sx={{...InputStyle, width: '100%', alignSelf: 'baseline'}}
+                                    variant="outlined" {...field}
+                                    error={!!errors.password}
+                                    helperText={errors?.password?.message}
+                                />}
+                        />
+                        {BadgeIconPassword}
+                    </Box>
+                    <Box sx={CreateAccountButtonWrapper}>
+                        <CustomButton>
+                            <Button type="submit" variant="contained">
+                                Create account
+                            </Button>
+                        </CustomButton>
+                    </Box>
                 </MUIHelperText>
             </Box>
         </Grid>

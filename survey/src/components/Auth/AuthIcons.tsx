@@ -1,4 +1,4 @@
-import {RegisterIcons} from './RegisterStyle';
+import {RegisterIcons} from './AuthStyle';
 
 export const BadgeIcon: JSX.Element = (
     <span style={RegisterIcons} className="material-symbols-outlined">
