@@ -127,7 +127,7 @@ export const RegisterMainGrid = {
 
 export const WaveBox = {
   position: 'relative',
-  height: '101%',
+  height: '119%',
 } as const;
 
 export const LogoUiImage = {

@@ -15,13 +15,7 @@ export default function useRegisterContext() {
 
 export const RegisterContextProvider = ({children}: Children) => {
 
-    const addUserToDatabase = (userData : any) => {
-       return axios.post(userData);
-    }
-
-    const useAddUserToDatabase = (): UseMutationResult<AxiosResponse<any>, unknown, any, unknown> => {
-        return useMutation(addUserToDatabase);
-    }
+  
 
     return (
         <RegisterContext.Provider
