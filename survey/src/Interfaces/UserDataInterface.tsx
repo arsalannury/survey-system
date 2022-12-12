@@ -1,7 +1,9 @@
 export interface UserDataInterface {
-  firstName: string;
-  lastName: string;
-  username: string;
-  email: string;
-  password: string;
+  readonly firstName: string;
+  readonly lastName: string;
+  readonly username: string;
+  readonly email: string;
+  readonly password: string;
+  readonly userId: string;
+  readonly creationTime: Date;
 }

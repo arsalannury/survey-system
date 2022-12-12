@@ -3,7 +3,7 @@ import {Routes,Route} from 'react-router-dom';
 import AuthPage from './components/Auth/Auth.page';
 import {QueryClient,QueryClientProvider as QueryClientProviderCore} from "react-query";
 import {QueryClientProviderProps} from "./Interfaces/ReactQueryInterface";
-import {Protected} from "./ProtectedRoutes/ProtectedRoutes";
+import {Protected,ProtectedAuthPage} from "./ProtectedRoutes/ProtectedRoutes";
 import FeedPage from "./components/Feed/Feed.page";
 
 const client = new QueryClient();
@@ -15,7 +15,7 @@ const App: React.FC<any> = () => {
         <QueryClientProvider client={client}>
       <Routes>
         <Route path={"/"} element={<Protected><FeedPage /></Protected>} />
-        <Route path="/login-register-view" element={<AuthPage />}/>
+        <Route path="/login-register-view" element={<ProtectedAuthPage><AuthPage /></ProtectedAuthPage>}/>
       </Routes>
         </QueryClientProvider>
     </>

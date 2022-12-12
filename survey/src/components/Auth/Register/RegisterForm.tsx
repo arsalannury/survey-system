@@ -88,10 +88,10 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
       // .toLocaleString('fa-IR')
     } as const;
     mutate(finalData, {
-      onSuccess(data, variables) {
+      onSuccess(data, variables: UserDataInterface) {
         localStorage.setItem(
           'survey-token-saved-local-storage-register-login-user',
-          data?.data.id
+          variables.userId
         );
         navigate('/');
       },
