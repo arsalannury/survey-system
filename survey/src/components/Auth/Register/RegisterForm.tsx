@@ -106,7 +106,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
       <Box sx={TextsBox}>
         <Typography component={'h1'} sx={CreateAccountTypography}>
           Create new account
-          <span style={DotStyle} />
+          <Typography sx={DotStyle} component={'span'} />
         </Typography>
         <Typography sx={LoginTypography}>
           Already A Member ?{' '}
@@ -235,4 +235,4 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
   );
 };
 
-export default RegisterForm;
+export default RegisterForm

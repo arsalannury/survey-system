@@ -4,6 +4,7 @@ import RegisterForm from './Register/RegisterForm';
 import AuthWaveUi from './AuthWaveUi';
 import LoginForm from "./Login/LoginForm";
 import {showAuthComp} from "../../Types/showAuthCompTypes";
+import {showAuthComponentStyle} from "./AuthStyle";
 
 
 const AuthPage: React.FC<any> = () => {
@@ -24,14 +25,14 @@ const AuthPage: React.FC<any> = () => {
     return (
         <>
             <Grid container alignItems={'center'} justifyContent={'space-between'}>
-                <Grid height={'100vh'} item xs={12} sm={12} md={6} lg={6}>
+                <Grid sx={showAuthComponentStyle} item xs={12} sm={12} md={6} lg={6}>
                     {handleShowAuthComponent()}
                 </Grid>
                 <Grid
                     height={'100vh'}
                     alignSelf={'flex-start'}
                     item
-                    xs={12}
+                    xs={0}
                     sm={12}
                     md={6}
                     lg={6}

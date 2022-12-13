@@ -1,16 +1,21 @@
 import React from 'react';
-import { Box } from '@mui/material';
-import { WaveBox, LogoUiImage } from './AuthStyle';
-import { Diffrent } from '../../assets/exporter';
+import {Box, CardMedia} from '@mui/material';
+import {LogoUiImage, WaveBox} from './AuthStyle';
+import {Diffrent} from '../../assets/exporter';
 
 const AuthWaveUi = () => {
-  return (
-    <>
-      <Box sx={WaveBox}>
-        <img src={Diffrent} alt="hands" style={LogoUiImage} />
-      </Box>
-    </>
-  );
+    return (
+        <>
+            <Box sx={WaveBox}>
+                <CardMedia
+                    component="img"
+                    src={Diffrent}
+                    sx={LogoUiImage}
+                    alt="hands"
+                />
+            </Box>
+        </>
+    );
 };
 
 export default AuthWaveUi;
