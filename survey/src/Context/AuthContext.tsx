@@ -1,16 +1,15 @@
 import React, {createContext, useContext} from "react";
-import {useMutation, UseMutationResult} from "react-query";
-import axios, {AxiosResponse} from "axios";
+
 type Children = {
     children: React.ReactNode;
 };
 
 
-const RegisterContext = createContext({
+const AuthContext = createContext({
 });
 
 export default function useRegisterContext() {
-    return useContext(RegisterContext);
+    return useContext(AuthContext);
 }
 
 export const RegisterContextProvider = ({children}: Children) => {
@@ -18,10 +17,10 @@ export const RegisterContextProvider = ({children}: Children) => {
   
 
     return (
-        <RegisterContext.Provider
+        <AuthContext.Provider
             value={{}}>
             {children}
-        </RegisterContext.Provider>
+        </AuthContext.Provider>
     )
 }
 
