@@ -16,12 +16,20 @@ import {
   RegisterHeader,
   SurveyLogoStyle,
   TextsBox,
+  LoginWithEmailGridWrapperProps,
+  LoginWithEmailGridContainerProps,
+  LoginWithEmailGridContainerSxProp,
 } from '../AuthStyle';
-import { BadgeIconPassword, BadgeIconUerName } from '../AuthIcons';
+import {
+  BadgeIconPassword,
+  BadgeIconUerName,
+  BadgeIconEmailLoginSupabase,
+} from '../AuthIcons';
 import { LoginFormProps } from '../../../Interfaces/AuthInterface';
 import { useGetAllUsers } from '../../../hooks/GetAllUsers';
 import { AxiosResponse } from 'axios';
 import { LoginFormatInterface } from '../../../Interfaces/LoginFormatInterface';
+import { supabase } from '../../../helper/supabaseClient';
 
 const LoginForm: React.FC<LoginFormProps> = ({ handleShowAuthChange }) => {
   const { isLoading, isError, data } = useGetAllUsers();
@@ -49,6 +57,15 @@ const LoginForm: React.FC<LoginFormProps> = ({ handleShowAuthChange }) => {
     console.log(convToStandardFormat);
   };
 
+    async function onSubmitLoginSupabaseEmail() {
+      const dd = await supabase.auth.signInWithOtp({
+        email: 'arsalannuryy@gmail.com'
+      })
+      console.log(dd);
+      
+      
+    }
+
   return (
     <Grid>
       <Box sx={RegisterHeader}>
@@ -70,6 +87,20 @@ const LoginForm: React.FC<LoginFormProps> = ({ handleShowAuthChange }) => {
           </span>
         </Typography>
       </Box>
+      <Grid container {...LoginWithEmailGridWrapperProps}>
+        <Grid
+          sx={LoginWithEmailGridContainerSxProp}
+          container
+          {...LoginWithEmailGridContainerProps}
+          item
+          lg={3}
+          md={3}
+        >
+          <Typography onClick={onSubmitLoginSupabaseEmail} sx={{ DefaultTypography }}>Login with</Typography>{' '}
+          {BadgeIconEmailLoginSupabase}
+        </Grid>
+        {/* <Grid></Grid> */}
+      </Grid>
       <Box sx={FormStyle} component={'form'}>
         <MUIHelperText>
           <Box sx={RegisterFormBox}>

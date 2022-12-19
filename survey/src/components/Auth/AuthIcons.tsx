@@ -12,6 +12,12 @@ export const BadgeIconEmail: JSX.Element = (
   </span>
 );
 
+export const BadgeIconEmailLoginSupabase: JSX.Element = (
+    <span className="material-symbols-outlined">
+    mail
+  </span>
+);
+
 export const BadgeIconPassword: JSX.Element = (
     <span style={RegisterIcons} className="material-symbols-outlined">
     lock
