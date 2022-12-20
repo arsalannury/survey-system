@@ -18,7 +18,7 @@ export const Protected = ({ children }: Children) => {
     supabase.auth.onAuthStateChange((_event, session) => {
       setSession(session);
     });
-  }, []);
+  }, [session]);
   const isAuth = localStorage.getItem(
     'survey-token-saved-local-storage-register-login-user'
   );
@@ -37,7 +37,7 @@ export const ProtectedAuthPage = ({ children }: Children) => {
     supabase.auth.onAuthStateChange((_event, session) => {
       setSession(session);
     });
-  }, []);
+  }, [session]);
 
   const isAuth = localStorage.getItem(
     'survey-token-saved-local-storage-register-login-user'
