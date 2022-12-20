@@ -11,12 +11,16 @@ export const Protected = ({ children }: Children) => {
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
-      localStorage.setItem("survey-token-saved-local-storage-register-login-user",session?.access_token!)
+      if(session) {
+        localStorage.setItem("survey-token-saved-local-storage-register-login-user",session?.access_token!)
+      }
       console.log(session);
     });
 
     supabase.auth.onAuthStateChange((_event, session) => {
-      localStorage.setItem("survey-token-saved-local-storage-register-login-user",session?.access_token!)
+      if(session) {
+        localStorage.setItem("survey-token-saved-local-storage-register-login-user",session?.access_token!)
+      }
     });
   }, []);
   const isAuth = localStorage.getItem(
@@ -30,12 +34,16 @@ export const ProtectedAuthPage = ({ children }: Children) => {
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
-      localStorage.setItem("survey-token-saved-local-storage-register-login-user",session?.access_token!)
+      if(session) {
+        localStorage.setItem("survey-token-saved-local-storage-register-login-user",session?.access_token!)
+      }
       console.log(session);
     });
 
     supabase.auth.onAuthStateChange((_event, session) => {
-      localStorage.setItem("survey-token-saved-local-storage-register-login-user",session?.access_token!)
+      if(session) {
+        localStorage.setItem("survey-token-saved-local-storage-register-login-user",session?.access_token!)
+      }
     });
   }, []);
 
