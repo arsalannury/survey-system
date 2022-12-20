@@ -24,10 +24,10 @@ export const FormDialog: React.FC<EmailLoginDialogInterface> = ({
       ErrorToastHandler('enter your email');
       return;
     }
-    const { error, data } = await supabase.auth.signInWithOtp({
+    const { error } = await supabase.auth.signInWithOtp({
       email: emailLogin,
       options: {
-        emailRedirectTo: '/',
+        emailRedirectTo: '/',data:{name:"arsi"}
       },
     });
 

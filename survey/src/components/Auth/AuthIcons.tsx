@@ -1,4 +1,4 @@
-import {RegisterIcons} from './AuthStyle';
+import {EmailIconLoginSupabase, RegisterIcons} from './AuthStyle';
 
 export const BadgeIcon: JSX.Element = (
     <span style={RegisterIcons} className="material-symbols-outlined">
@@ -13,7 +13,7 @@ export const BadgeIconEmail: JSX.Element = (
 );
 
 export const BadgeIconEmailLoginSupabase: JSX.Element = (
-    <span className="material-symbols-outlined">
+    <span style={EmailIconLoginSupabase} className="material-symbols-outlined">
     mail
   </span>
 );

@@ -71,6 +71,22 @@ export const DotStyle = {
   },
 } as const;
 
+export const DotStyleLogin = {
+  width: '10px',
+  height: '10px',
+  borderRadius: '50%',
+  margin: '0 0 0 .1em',
+  background: '#2176ff',
+  position: 'absolute',
+  top: '53px',
+  '@media screen and (max-width: 482px)': {
+    top: '113px',
+  },
+  '@media screen and (min-width: 900px) and (max-width: 964px)': {
+    top: '113px',
+  }
+} as const;
+
 export const LinkStyle = {
   fontFamily: 'FONT_FAMILY_BOLD',
   color: '#2176ff',
@@ -182,8 +198,8 @@ export const LoginWithEmailGridWrapperProps = {
 
 export const LoginWithEmailGridContainerProps = {
   alignItems: 'center',
-  justifyContent: 'space-around',
-  py: 1,
+  justifyContent: 'flex-start',
+  p: 2,
   borderRadius: 1,
 } as const;
 
@@ -197,3 +213,8 @@ export const LoginWithEmailGridContainerSxProp = {
     border: '1px dashed #fff',
   },
 } as const;
+
+
+export const EmailIconLoginSupabase = {
+  marginLeft: 15
+}as const

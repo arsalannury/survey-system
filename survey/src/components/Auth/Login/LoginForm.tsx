@@ -19,6 +19,7 @@ import {
   LoginWithEmailGridWrapperProps,
   LoginWithEmailGridContainerProps,
   LoginWithEmailGridContainerSxProp,
+  DotStyleLogin,
 } from '../AuthStyle';
 import {
   BadgeIconPassword,
@@ -88,7 +89,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ handleShowAuthChange }) => {
         <Box sx={TextsBox}>
           <Typography component={'h1'} sx={CreateAccountTypography}>
             Login to your account
-            <Typography component={'span'} sx={DotStyle} />
+            <Typography component={'span'} sx={DotStyleLogin} />
           </Typography>
           <Typography sx={LoginTypography}>
             You Aren't A Member ?{' '}
@@ -102,15 +103,17 @@ const LoginForm: React.FC<LoginFormProps> = ({ handleShowAuthChange }) => {
         </Box>
         <Grid container {...LoginWithEmailGridWrapperProps}>
           <Grid
+            onClick={() => handleClickOpenClose(true)}
             sx={LoginWithEmailGridContainerSxProp}
             container
             {...LoginWithEmailGridContainerProps}
             item
-            lg={3}
-            md={3}
+            lg={4}
+            md={4}
+            sm={6}
+            xs={7}
           >
             <Typography
-              onClick={() => handleClickOpenClose(true)}
               sx={{ DefaultTypography }}
             >
               Login with
