@@ -29,16 +29,27 @@ import { LoginFormProps } from '../../../Interfaces/AuthInterface';
 import { useGetAllUsers } from '../../../hooks/GetAllUsers';
 import { AxiosResponse } from 'axios';
 import { LoginFormatInterface } from '../../../Interfaces/LoginFormatInterface';
-import { supabase } from '../../../helper/supabaseClient';
+import { FormDialog } from '../../MuiComponents/EmailLoginDialog';
 
 const LoginForm: React.FC<LoginFormProps> = ({ handleShowAuthChange }) => {
   const { isLoading, isError, data } = useGetAllUsers();
   const finalData = data as AxiosResponse;
 
+  const [open, setOpen] = useState(false);
+  const [emailLogin, setEmailLogin] = useState<string>('');
   const [userLogin, setUserLogin] = useState<LoginFormatInterface>({
     username: '',
     password: '',
   });
+
+  const handleClickOpenClose = (state: boolean) => {
+    setOpen(state);
+  };
+
+  const setEmailLoginHandler = (value: string) => {
+    setEmailLogin(value);
+  };
+
   const handleUserLoginChange = ({
     currentTarget: input,
   }: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -57,90 +68,98 @@ const LoginForm: React.FC<LoginFormProps> = ({ handleShowAuthChange }) => {
     console.log(convToStandardFormat);
   };
 
-    async function onSubmitLoginSupabaseEmail() {
-      const dd = await supabase.auth.signInWithOtp({
-        email: 'arsalannuryy@gmail.com'
-      })
-      console.log(dd);
-      
-      
-    }
-
   return (
-    <Grid>
-      <Box sx={RegisterHeader}>
-        <img style={SurveyLogoStyle} src={SurveyLogo} alt="logo-main-survey" />
-        <Typography sx={DefaultTypography}>Survey app</Typography>
-      </Box>
-      <Box sx={TextsBox}>
-        <Typography component={'h1'} sx={CreateAccountTypography}>
-          Login to your account
-          <Typography component={'span'} sx={DotStyle} />
-        </Typography>
-        <Typography sx={LoginTypography}>
-          You Aren't A Member ?{' '}
-          <span
-            style={LinkStyle}
-            onClick={() => handleShowAuthChange('show-register')}
+    <>
+      <FormDialog
+        emailLogin={emailLogin}
+        handleClickOpenClose={handleClickOpenClose}
+        open={open}
+        setEmailLoginHandler={setEmailLoginHandler}
+      />
+      <Grid>
+        <Box sx={RegisterHeader}>
+          <img
+            style={SurveyLogoStyle}
+            src={SurveyLogo}
+            alt="logo-main-survey"
+          />
+          <Typography sx={DefaultTypography}>Survey app</Typography>
+        </Box>
+        <Box sx={TextsBox}>
+          <Typography component={'h1'} sx={CreateAccountTypography}>
+            Login to your account
+            <Typography component={'span'} sx={DotStyle} />
+          </Typography>
+          <Typography sx={LoginTypography}>
+            You Aren't A Member ?{' '}
+            <span
+              style={LinkStyle}
+              onClick={() => handleShowAuthChange('show-register')}
+            >
+              Create Account
+            </span>
+          </Typography>
+        </Box>
+        <Grid container {...LoginWithEmailGridWrapperProps}>
+          <Grid
+            sx={LoginWithEmailGridContainerSxProp}
+            container
+            {...LoginWithEmailGridContainerProps}
+            item
+            lg={3}
+            md={3}
           >
-            Create Account
-          </span>
-        </Typography>
-      </Box>
-      <Grid container {...LoginWithEmailGridWrapperProps}>
-        <Grid
-          sx={LoginWithEmailGridContainerSxProp}
-          container
-          {...LoginWithEmailGridContainerProps}
-          item
-          lg={3}
-          md={3}
-        >
-          <Typography onClick={onSubmitLoginSupabaseEmail} sx={{ DefaultTypography }}>Login with</Typography>{' '}
-          {BadgeIconEmailLoginSupabase}
+            <Typography
+              onClick={() => handleClickOpenClose(true)}
+              sx={{ DefaultTypography }}
+            >
+              Login with
+            </Typography>{' '}
+            {BadgeIconEmailLoginSupabase}
+          </Grid>
+          {/* <Grid></Grid> */}
         </Grid>
-        {/* <Grid></Grid> */}
+        <Box sx={FormStyle} component={'form'}>
+          <MUIHelperText>
+            <Box sx={RegisterFormBox}>
+              <TextField
+                id="username"
+                placeholder="user name"
+                name="username"
+                value={userLogin.username}
+                onChange={(event) => handleUserLoginChange(event)}
+                sx={{ ...InputStyle, width: '100%', alignSelf: 'baseline' }}
+                variant="outlined"
+              />
+              {BadgeIconUerName}
+            </Box>
+            <Box sx={RegisterFormBox}>
+              <TextField
+                id="passwordId"
+                placeholder="password"
+                name="password"
+                value={userLogin.password}
+                onChange={(event) => handleUserLoginChange(event)}
+                sx={{ ...InputStyle, width: '100%', alignSelf: 'baseline' }}
+                variant="outlined"
+              />
+              {BadgeIconPassword}
+            </Box>
+            <Box sx={CreateAccountButtonWrapper}>
+              <CustomButton>
+                <Button
+                  onClick={(event) => onSubmitLogin(event)}
+                  type="submit"
+                  variant="contained"
+                >
+                  Login
+                </Button>
+              </CustomButton>
+            </Box>
+          </MUIHelperText>
+        </Box>
       </Grid>
-      <Box sx={FormStyle} component={'form'}>
-        <MUIHelperText>
-          <Box sx={RegisterFormBox}>
-            <TextField
-              id="username"
-              placeholder="user name"
-              name="username"
-              value={userLogin.username}
-              onChange={(event) => handleUserLoginChange(event)}
-              sx={{ ...InputStyle, width: '100%', alignSelf: 'baseline' }}
-              variant="outlined"
-            />
-            {BadgeIconUerName}
-          </Box>
-          <Box sx={RegisterFormBox}>
-            <TextField
-              id="passwordId"
-              placeholder="password"
-              name="password"
-              value={userLogin.password}
-              onChange={(event) => handleUserLoginChange(event)}
-              sx={{ ...InputStyle, width: '100%', alignSelf: 'baseline' }}
-              variant="outlined"
-            />
-            {BadgeIconPassword}
-          </Box>
-          <Box sx={CreateAccountButtonWrapper}>
-            <CustomButton>
-              <Button
-                onClick={(event) => onSubmitLogin(event)}
-                type="submit"
-                variant="contained"
-              >
-                Login
-              </Button>
-            </CustomButton>
-          </Box>
-        </MUIHelperText>
-      </Box>
-    </Grid>
+    </>
   );
 };
 
