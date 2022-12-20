@@ -27,7 +27,7 @@ export const FormDialog: React.FC<EmailLoginDialogInterface> = ({
     const { error } = await supabase.auth.signInWithOtp({
       email: emailLogin,
       options: {
-        emailRedirectTo: '/',data:{name:"arsi"}
+        emailRedirectTo: '/'
       },
     });
 
