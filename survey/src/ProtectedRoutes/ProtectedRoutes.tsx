@@ -11,14 +11,14 @@ export const Protected = ({ children }: Children) => {
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session);
+      localStorage.setItem("survey-token-saved-local-storage-register-login-user",session?.access_token!)
       console.log(session);
     });
 
     supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session);
+      localStorage.setItem("survey-token-saved-local-storage-register-login-user",session?.access_token!)
     });
-  }, [session]);
+  }, []);
   const isAuth = localStorage.getItem(
     'survey-token-saved-local-storage-register-login-user'
   );
@@ -30,14 +30,14 @@ export const ProtectedAuthPage = ({ children }: Children) => {
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session);
+      localStorage.setItem("survey-token-saved-local-storage-register-login-user",session?.access_token!)
       console.log(session);
     });
 
     supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session);
+      localStorage.setItem("survey-token-saved-local-storage-register-login-user",session?.access_token!)
     });
-  }, [session]);
+  }, []);
 
   const isAuth = localStorage.getItem(
     'survey-token-saved-local-storage-register-login-user'
