@@ -84,6 +84,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
     const finalData = {
       ...data,
       creationTime: new Date(),
+      lastUpdateTime: new Date(),
       userId: Math.floor(Math.random() * 1234456786),
       // .toLocaleString('fa-IR')
     } as const;

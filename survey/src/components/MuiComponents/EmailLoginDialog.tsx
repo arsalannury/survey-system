@@ -11,7 +11,7 @@ import {
 import { supabase } from '../../helper/supabaseClient';
 import { EmailLoginDialogInterface } from '../../Interfaces/EmailLoginDialogInterface';
 import { ToastContainer } from 'react-toastify';
-import { ErrorToastHandler } from '../Toasts/ReactToastify';
+import { ErrorToastHandler, SuccessToastHandler } from '../Toasts/ReactToastify';
 
 export const FormDialog: React.FC<EmailLoginDialogInterface> = ({
   emailLogin,
@@ -35,7 +35,7 @@ export const FormDialog: React.FC<EmailLoginDialogInterface> = ({
     }
 
     handleClickOpenClose(false);
-
+    SuccessToastHandler("email send successfully");
   };
 
   return (
