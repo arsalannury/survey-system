@@ -19,16 +19,14 @@ export const FormDialog: React.FC<EmailLoginDialogInterface> = ({
   open,
   setEmailLoginHandler,
 }) => {
-  const handleLoginWithSupabase = async () => {
+
+  const handleLoginWithSupabase = async (): Promise<void> => {
     if (emailLogin.trim().length === 0) {
       ErrorToastHandler('enter your email');
       return;
     }
     const { error } = await supabase.auth.signInWithOtp({
       email: emailLogin,
-      options: {
-        emailRedirectTo: '/'
-      },
     });
 
     if (error) {
