@@ -31,7 +31,11 @@ export const FormDialog: React.FC<EmailLoginDialogInterface> = ({
 
     if (error) {
       ErrorToastHandler('magic link send faild');
+      return;
     }
+
+    handleClickOpenClose(false);
+
   };
 
   return (
