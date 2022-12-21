@@ -40,6 +40,7 @@ import { useAddUserToDatabase } from '../../../hooks/RegisterUser';
 import { UserDataInterface } from '../../../Interfaces/UserDataInterface';
 import CircularProgressTheme from '../../../MuiTheme/CircularProgressTheme';
 import { useNavigate } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 
 const RegisterForm: React.FC<RegisterFormProps> = ({
   handleShowAuthChange,
@@ -81,159 +82,171 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
     resolver: yupResolver(schema),
   });
   const onSubmitData: SubmitHandler<any> = (data?: UserDataInterface) => {
-    const finalData = {
-      ...data,
-      creationTime: new Date(),
-      lastUpdateTime: new Date(),
-      userId: Math.floor(Math.random() * 1234456786),
-      // .toLocaleString('fa-IR')
-    } as const;
-    mutate(finalData, {
-      onSuccess(data, variables: UserDataInterface) {
-        localStorage.setItem(
-          'survey-token-saved-local-storage-register-login-user',
-          variables.userId
-        );
-        navigate('/');
+    mutate(data, {
+      onSuccess(data: any, variables: UserDataInterface) {
+        console.log(variables);
+        // localStorage.setItem(
+        //   'survey-token-saved-local-storage-register-login-user',
+        //   variables.userId
+        // );
+        // navigate('/');
       },
     });
   };
   return (
-    <Grid>
-      <Box sx={RegisterHeader}>
-        <img style={SurveyLogoStyle} src={SurveyLogo} alt="logo-main-survey" />
-        <Typography sx={DefaultTypography}>Survey app</Typography>
-      </Box>
-      <Box sx={TextsBox}>
-        <Typography component={'h1'} sx={CreateAccountTypography}>
-          Create new account
-          <Typography sx={DotStyle} component={'span'} />
-        </Typography>
-        <Typography sx={LoginTypography}>
-          Already A Member ?{' '}
-          <span
-            style={LinkStyle}
-            onClick={() => handleShowAuthChange('show-login')}
-          >
-            Log In
-          </span>
-        </Typography>
-      </Box>
-      <Box
-        onSubmit={handleSubmit(onSubmitData)}
-        sx={FormStyle}
-        component={'form'}
-      >
-        <MUIHelperText>
-          <Box sx={NameInputs}>
-            <Box sx={{ ...NameInputsBox, marginRight: '25px' }}>
+    <>
+      <Grid>
+        <Box sx={RegisterHeader}>
+          <img
+            style={SurveyLogoStyle}
+            src={SurveyLogo}
+            alt="logo-main-survey"
+          />
+          <Typography sx={DefaultTypography}>Survey app</Typography>
+        </Box>
+        <Box sx={TextsBox}>
+          <Typography component={'h1'} sx={CreateAccountTypography}>
+            Create new account
+            <Typography sx={DotStyle} component={'span'} />
+          </Typography>
+          <Typography sx={LoginTypography}>
+            Already A Member ?{' '}
+            <span
+              style={LinkStyle}
+              onClick={() => handleShowAuthChange('show-login')}
+            >
+              Log In
+            </span>
+          </Typography>
+        </Box>
+        <Box
+          onSubmit={handleSubmit(onSubmitData)}
+          sx={FormStyle}
+          component={'form'}
+        >
+          <MUIHelperText>
+            <Box sx={NameInputs}>
+              <Box sx={{ ...NameInputsBox, marginRight: '25px' }}>
+                <Controller
+                  name="firstName"
+                  control={control}
+                  render={({ field }) => (
+                    <TextField
+                      id="firstName"
+                      placeholder="first name"
+                      sx={InputStyle}
+                      variant="outlined"
+                      {...field}
+                      error={!!errors.firstName}
+                      helperText={errors?.firstName?.message}
+                    />
+                  )}
+                />
+                {BadgeIcon}
+              </Box>
+              <Box sx={NameInputsBox}>
+                <Controller
+                  name="lastName"
+                  control={control}
+                  render={({ field }) => (
+                    <TextField
+                      id="lastName"
+                      placeholder="last name"
+                      sx={InputStyle}
+                      variant="outlined"
+                      {...field}
+                      error={!!errors.lastName}
+                      helperText={errors?.lastName?.message}
+                    />
+                  )}
+                />
+                {BadgeIcon}
+              </Box>
+            </Box>
+            <Box sx={RegisterFormBox}>
               <Controller
-                name="firstName"
+                name="email"
                 control={control}
                 render={({ field }) => (
                   <TextField
-                    id="firstName"
-                    placeholder="first name"
-                    sx={InputStyle}
+                    id="emailId"
+                    placeholder="email"
+                    sx={{ ...InputStyle, width: '100%', alignSelf: 'baseline' }}
                     variant="outlined"
                     {...field}
-                    error={!!errors.firstName}
-                    helperText={errors?.firstName?.message}
+                    error={!!errors.email}
+                    helperText={errors?.email?.message}
                   />
                 )}
               />
-              {BadgeIcon}
+              {BadgeIconEmail}
             </Box>
-            <Box sx={NameInputsBox}>
+            <Box sx={RegisterFormBox}>
               <Controller
-                name="lastName"
+                name="username"
                 control={control}
                 render={({ field }) => (
                   <TextField
-                    id="lastName"
-                    placeholder="last name"
-                    sx={InputStyle}
+                    id="username"
+                    placeholder="user name"
+                    sx={{ ...InputStyle, width: '100%', alignSelf: 'baseline' }}
                     variant="outlined"
                     {...field}
-                    error={!!errors.lastName}
-                    helperText={errors?.lastName?.message}
+                    error={!!errors.username}
+                    helperText={errors?.username?.message}
                   />
                 )}
               />
-              {BadgeIcon}
+              {BadgeIconUerName}
             </Box>
-          </Box>
-          <Box sx={RegisterFormBox}>
-            <Controller
-              name="email"
-              control={control}
-              render={({ field }) => (
-                <TextField
-                  id="emailId"
-                  placeholder="email"
-                  sx={{ ...InputStyle, width: '100%', alignSelf: 'baseline' }}
-                  variant="outlined"
-                  {...field}
-                  error={!!errors.email}
-                  helperText={errors?.email?.message}
-                />
-              )}
-            />
-            {BadgeIconEmail}
-          </Box>
-          <Box sx={RegisterFormBox}>
-            <Controller
-              name="username"
-              control={control}
-              render={({ field }) => (
-                <TextField
-                  id="username"
-                  placeholder="user name"
-                  sx={{ ...InputStyle, width: '100%', alignSelf: 'baseline' }}
-                  variant="outlined"
-                  {...field}
-                  error={!!errors.username}
-                  helperText={errors?.username?.message}
-                />
-              )}
-            />
-            {BadgeIconUerName}
-          </Box>
-          <Box sx={RegisterFormBox}>
-            <Controller
-              name="password"
-              control={control}
-              render={({ field }) => (
-                <TextField
-                  id="passwordId"
-                  placeholder="password"
-                  sx={{ ...InputStyle, width: '100%', alignSelf: 'baseline' }}
-                  variant="outlined"
-                  {...field}
-                  error={!!errors.password}
-                  helperText={errors?.password?.message}
-                />
-              )}
-            />
-            {BadgeIconPassword}
-          </Box>
-          <Box sx={CreateAccountButtonWrapper}>
-            <CustomButton>
-              <Button type="submit" variant="contained">
-                {isLoading ? (
-                  <CircularProgressTheme>
-                    <CircularProgress />
-                  </CircularProgressTheme>
-                ) : (
-                  'Create account'
+            <Box sx={RegisterFormBox}>
+              <Controller
+                name="password"
+                control={control}
+                render={({ field }) => (
+                  <TextField
+                    id="passwordId"
+                    placeholder="password"
+                    sx={{ ...InputStyle, width: '100%', alignSelf: 'baseline' }}
+                    variant="outlined"
+                    {...field}
+                    error={!!errors.password}
+                    helperText={errors?.password?.message}
+                  />
                 )}
-              </Button>
-            </CustomButton>
-          </Box>
-        </MUIHelperText>
-      </Box>
-    </Grid>
+              />
+              {BadgeIconPassword}
+            </Box>
+            <Box sx={CreateAccountButtonWrapper}>
+              <CustomButton>
+                <Button type="submit" variant="contained">
+                  {isLoading ? (
+                    <CircularProgressTheme>
+                      <CircularProgress />
+                    </CircularProgressTheme>
+                  ) : (
+                    'Create account'
+                  )}
+                </Button>
+              </CustomButton>
+            </Box>
+          </MUIHelperText>
+        </Box>
+      </Grid>
+      <ToastContainer
+        position="top-left"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
+    </>
   );
 };
 
-export default RegisterForm
+export default RegisterForm;
