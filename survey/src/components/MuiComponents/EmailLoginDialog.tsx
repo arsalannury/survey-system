@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useState } from 'react';
 import {
   Button,
   TextField,
@@ -7,6 +8,7 @@ import {
   DialogTitle,
   DialogContentText,
   DialogContent,
+  CircularProgress,
 } from '@mui/material';
 import { supabase } from '../../helper/supabaseClient';
 import { EmailLoginDialogInterface } from '../../Interfaces/EmailLoginDialogInterface';
@@ -15,6 +17,8 @@ import {
   ErrorToastHandler,
   SuccessToastHandler,
 } from '../Toasts/ReactToastify';
+import { CircularProgressBlueTheme } from '../../MuiTheme/CircularProgressTheme';
+import { publicButtonDialog } from './EmailLoginDialogStyle';
 
 export const FormDialog: React.FC<EmailLoginDialogInterface> = ({
   emailLogin,
@@ -22,8 +26,12 @@ export const FormDialog: React.FC<EmailLoginDialogInterface> = ({
   open,
   setEmailLoginHandler,
 }) => {
+  const [magicLinkLoader, setMagicLinkLoader] = useState<boolean>(false);
+
   const handleLoginWithSupabase = async (): Promise<void> => {
+    setMagicLinkLoader(true);
     if (emailLogin.trim().length === 0) {
+      setMagicLinkLoader(false);
       ErrorToastHandler('enter your email');
       return;
     }
@@ -32,12 +40,15 @@ export const FormDialog: React.FC<EmailLoginDialogInterface> = ({
     });
 
     if (error) {
+      setMagicLinkLoader(false);
       ErrorToastHandler('magic link send faild');
       return;
     }
 
+    setMagicLinkLoader(false);
     handleClickOpenClose(false);
     SuccessToastHandler('email send successfully');
+    setEmailLoginHandler('');
   };
 
   return (
@@ -62,8 +73,24 @@ export const FormDialog: React.FC<EmailLoginDialogInterface> = ({
             />
           </DialogContent>
           <DialogActions>
-            <Button onClick={() => handleClickOpenClose(false)}>Cancel</Button>
-            <Button onClick={handleLoginWithSupabase}>Send magic link</Button>
+            <Button
+              sx={publicButtonDialog}
+              onClick={() => {
+                handleClickOpenClose(false);
+                setEmailLoginHandler('');
+              }}
+            >
+              Cancel
+            </Button>
+            <Button sx={publicButtonDialog} onClick={handleLoginWithSupabase}>
+              {magicLinkLoader ? (
+                <CircularProgressBlueTheme>
+                  <CircularProgress />
+                </CircularProgressBlueTheme>
+              ) : (
+                'Send magic link'
+              )}
+            </Button>
           </DialogActions>
         </Dialog>
       </div>

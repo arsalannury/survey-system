@@ -9,7 +9,7 @@ const theme = createTheme({
     MuiCircularProgress: {
       styleOverrides: {
         root: {
-          color: "#fff"
+          color: '#fff',
         },
       },
     },
@@ -21,3 +21,19 @@ const CircularProgressTheme = ({ children }: Children) => {
 };
 
 export default CircularProgressTheme;
+
+const blueTheme = createTheme({
+  components: {
+    MuiCircularProgress: {
+      styleOverrides: {
+        root: {
+          color: '#2176ff',
+        },
+      },
+    },
+  },
+});
+
+export const CircularProgressBlueTheme = ({ children }: Children) => {
+  return <ThemeProvider theme={blueTheme}>{children}</ThemeProvider>;
+};

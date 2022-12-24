@@ -88,7 +88,6 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
     };
     mutate(finalData, {
       onSuccess(data: any, variables: UserDataInterface) {
-        console.log(variables);
         localStorage.setItem(
           'survey-token-saved-local-storage-register-login-user',
           variables.user_id

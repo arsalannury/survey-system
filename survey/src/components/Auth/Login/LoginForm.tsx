@@ -27,14 +27,16 @@ import {
   BadgeIconEmailLoginSupabase,
 } from '../AuthIcons';
 import { LoginFormProps } from '../../../Interfaces/AuthInterface';
-import { useGetAllUsers } from '../../../hooks/GetAllUsers';
-import { AxiosResponse } from 'axios';
+// import { useGetAllUsers } from '../../../hooks/GetAllUsers';
+// import { AxiosResponse } from 'axios';
 import { LoginFormatInterface } from '../../../Interfaces/LoginFormatInterface';
 import { FormDialog } from '../../MuiComponents/EmailLoginDialog';
+import { supabase } from '../../../helper/supabaseClient';
+import { ErrorToastHandler } from '../../Toasts/ReactToastify';
 
 const LoginForm: React.FC<LoginFormProps> = ({ handleShowAuthChange }) => {
-  const { isLoading, isError, data } = useGetAllUsers();
-  const finalData = data as AxiosResponse;
+  // const { isLoading, isError, data } = useGetAllUsers();
+  // const finalData = data as AxiosResponse;
 
   const [open, setOpen] = useState(false);
   const [emailLogin, setEmailLogin] = useState<string>('');
@@ -63,10 +65,28 @@ const LoginForm: React.FC<LoginFormProps> = ({ handleShowAuthChange }) => {
     return () => {};
   });
 
-  const onSubmitLogin = (event: any) => {
+  const onSubmitLogin = async (event: any) => {
     event.preventDefault();
-    const convToStandardFormat = Object.values(finalData?.data);
-    console.log(convToStandardFormat);
+    const { data, error: FetchError } = await supabase
+    .from('login-register')
+    .select('*')
+    .eq('userName', userLogin.username);
+
+    if (FetchError) {
+      throw new Error(FetchError.message);
+    }
+
+  if (data?.length! === 0) {
+    ErrorToastHandler('User not found');
+    return;
+  }
+
+  // localStorage.setItem(
+  //   'survey-token-saved-local-storage-register-login-user',
+  //   data?[0]
+  // );
+  // navigate('/');
+
   };
 
   return (
