@@ -1,4 +1,4 @@
-import React, { useEffect, useId } from 'react';
+import React, { useEffect } from 'react';
 import * as yup from 'yup';
 import MUIHelperText from '../../../MuiTheme/MUIHelperText';
 import {
@@ -82,14 +82,18 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
     resolver: yupResolver(schema),
   });
   const onSubmitData: SubmitHandler<any> = (data?: UserDataInterface) => {
-    mutate(data, {
+    const finalData = {
+      ...data,
+      user_id: Math.floor(Math.random() * 1234545644543654),
+    };
+    mutate(finalData, {
       onSuccess(data: any, variables: UserDataInterface) {
         console.log(variables);
-        // localStorage.setItem(
-        //   'survey-token-saved-local-storage-register-login-user',
-        //   variables.userId
-        // );
-        // navigate('/');
+        localStorage.setItem(
+          'survey-token-saved-local-storage-register-login-user',
+          variables.user_id
+        );
+        navigate('/');
       },
     });
   };

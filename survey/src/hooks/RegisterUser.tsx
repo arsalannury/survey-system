@@ -18,10 +18,10 @@ const addUserToDatabase = async (userData: UserDataInterface) => {
     return;
   }
 
-  await supabase.auth.signUp({
-    email: userData.email,
-    password: userData.password,options:{data:{confirm_email:true}}
-  })
+  // await supabase.auth.signUp({
+  //   email: userData.email,
+  //   password: userData.password
+  // })
 
   const { error: PostError } = await supabase.from('login-register').insert([
     {
@@ -30,6 +30,7 @@ const addUserToDatabase = async (userData: UserDataInterface) => {
       userName: userData.username,
       email: userData.email,
       password: userData.password,
+      user_id: userData.user_id
     },
   ]);
 

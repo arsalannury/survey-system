@@ -4,6 +4,6 @@ export interface UserDataInterface {
   readonly username: string;
   readonly email: string;
   readonly password: string;
-  readonly userId: string;
   readonly creationTime: Date;
+  readonly user_id?: any
 }
