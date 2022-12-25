@@ -80,7 +80,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ handleShowAuthChange }) => {
     setLoginLoader(true);
     const { data, error: FetchError } = await supabase
       .from('login-register')
-      .select('*')
+      .select('userName,password,user_id')
       .eq('userName', userLogin.username);
 
     if (FetchError) {
@@ -96,7 +96,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ handleShowAuthChange }) => {
 
     const userFounded = data[0];
     if (
-      userFounded.username === userLogin.username &&
+      userFounded.userName === userLogin.username &&
       userFounded.password === userLogin.password
     ) {
       localStorage.setItem(
