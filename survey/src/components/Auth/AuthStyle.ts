@@ -219,6 +219,10 @@ export const EmailIconLoginSupabase = {
   marginLeft: 15
 }as const
 
+export const GoogleLoginImage = {
+  width:"25px",
+  marginLeft: 15
+}as const;
 
 // forget password link style 
 

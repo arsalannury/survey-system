@@ -10,14 +10,14 @@ import {
   DialogContent,
   CircularProgress,
 } from '@mui/material';
-import { supabase } from '../../helper/supabaseClient';
-import { EmailLoginDialogInterface } from '../../Interfaces/EmailLoginDialogInterface';
+import { supabase } from '../../../helper/supabaseClient';
+import { EmailLoginDialogInterface } from '../../../Interfaces/EmailLoginDialogInterface';
 import { ToastContainer } from 'react-toastify';
 import {
   ErrorToastHandler,
   SuccessToastHandler,
-} from '../Toasts/ReactToastify';
-import { CircularProgressBlueTheme } from '../../MuiTheme/CircularProgressTheme';
+} from '../../Toasts/ReactToastify';
+import { CircularProgressBlueTheme } from '../../../MuiTheme/CircularProgressTheme';
 import { publicButtonDialog } from './EmailLoginDialogStyle';
 
 export const LoginWithEmailFormDialog: React.FC<EmailLoginDialogInterface> = ({

@@ -8,7 +8,7 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
-import { SurveyLogo } from '../../../assets/exporter';
+import { SurveyLogo,Google } from '../../../assets/exporter';
 import CustomButton from '../../../MuiTheme/CustomButton';
 import {
   CreateAccountButtonWrapper,
@@ -27,6 +27,7 @@ import {
   LoginWithEmailGridContainerSxProp,
   DotStyleLogin,
   ForgetPassword,
+  GoogleLoginImage,
 } from '../AuthStyle';
 import {
   BadgeIconPassword,
@@ -37,7 +38,7 @@ import { LoginFormProps } from '../../../Interfaces/AuthInterface';
 // import { useGetAllUsers } from '../../../hooks/GetAllUsers';
 // import { AxiosResponse } from 'axios';
 import { LoginFormatInterface } from '../../../Interfaces/LoginFormatInterface';
-import { LoginWithEmailFormDialog } from '../../MuiComponents/EmailLoginDialog';
+import { LoginWithEmailFormDialog } from '../EmailLoginProvider/EmailLoginDialog';
 import { supabase } from '../../../helper/supabaseClient';
 import {
   ErrorToastHandler,
@@ -115,6 +116,14 @@ const LoginForm: React.FC<LoginFormProps> = ({ handleShowAuthChange }) => {
     setLoginLoader(false);
   };
 
+  const signInWithGoogle = async () => {
+    const { data, error } = await supabase.auth.signInWithOAuth({
+      provider: 'google',
+    })
+    console.log(data);
+    console.log(error);
+  }
+
   return (
     <>
       <LoginWithEmailFormDialog
@@ -147,13 +156,14 @@ const LoginForm: React.FC<LoginFormProps> = ({ handleShowAuthChange }) => {
             </span>
           </Typography>
         </Box>
-        <Grid container {...LoginWithEmailGridWrapperProps}>
+        <Grid gap={2} container {...LoginWithEmailGridWrapperProps}>
           <Grid
             onClick={() => handleClickOpenClose(true)}
             sx={LoginWithEmailGridContainerSxProp}
             container
             {...LoginWithEmailGridContainerProps}
             item
+            
             lg={4}
             md={4}
             sm={6}
@@ -162,7 +172,20 @@ const LoginForm: React.FC<LoginFormProps> = ({ handleShowAuthChange }) => {
             <Typography sx={{ DefaultTypography }}>Login with</Typography>{' '}
             {BadgeIconEmailLoginSupabase}
           </Grid>
-          {/* <Grid></Grid> */}
+          <Grid
+           onClick={signInWithGoogle}
+           sx={LoginWithEmailGridContainerSxProp}
+           container
+           {...LoginWithEmailGridContainerProps}
+           item
+           lg={4}
+           md={4}
+           sm={6}
+           xs={7}
+          >
+          <Typography sx={{ DefaultTypography }}>Login with</Typography>{' '}
+            <img style={GoogleLoginImage} src={Google} alt="google" />
+          </Grid>
         </Grid>
         <Box sx={FormStyle} component={'form'}>
           <MUIHelperText>
