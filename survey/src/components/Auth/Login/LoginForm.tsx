@@ -1,13 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import MUIHelperText from '../../../MuiTheme/MUIHelperText';
-import { Box, Button, Grid, TextField, Typography } from '@mui/material';
+import {
+  Box,
+  Button,
+  CircularProgress,
+  Grid,
+  TextField,
+  Typography,
+} from '@mui/material';
 import { SurveyLogo } from '../../../assets/exporter';
 import CustomButton from '../../../MuiTheme/CustomButton';
 import {
   CreateAccountButtonWrapper,
   CreateAccountTypography,
   DefaultTypography,
-  DotStyle,
   FormStyle,
   InputStyle,
   LinkStyle,
@@ -33,6 +39,8 @@ import { LoginFormatInterface } from '../../../Interfaces/LoginFormatInterface';
 import { LoginWithEmailFormDialog } from '../../MuiComponents/EmailLoginDialog';
 import { supabase } from '../../../helper/supabaseClient';
 import { ErrorToastHandler } from '../../Toasts/ReactToastify';
+import { useNavigate } from 'react-router-dom';
+import CircularProgressTheme from '../../../MuiTheme/CircularProgressTheme';
 
 const LoginForm: React.FC<LoginFormProps> = ({ handleShowAuthChange }) => {
   // const { isLoading, isError, data } = useGetAllUsers();
@@ -40,10 +48,12 @@ const LoginForm: React.FC<LoginFormProps> = ({ handleShowAuthChange }) => {
 
   const [open, setOpen] = useState(false);
   const [emailLogin, setEmailLogin] = useState<string>('');
+  const [loginLoader, setLoginLoader] = useState<boolean>(false);
   const [userLogin, setUserLogin] = useState<LoginFormatInterface>({
     username: '',
     password: '',
   });
+  const navigate = useNavigate();
 
   const handleClickOpenClose = (state: boolean) => {
     setOpen(state);
@@ -56,7 +66,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ handleShowAuthChange }) => {
   const handleUserLoginChange = ({
     currentTarget: input,
   }: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const shallowCopy = {...userLogin};
+    const shallowCopy = { ...userLogin };
     shallowCopy[input.name as keyof LoginFormatInterface] = input.value;
     setUserLogin(shallowCopy);
   };
@@ -67,25 +77,37 @@ const LoginForm: React.FC<LoginFormProps> = ({ handleShowAuthChange }) => {
 
   const onSubmitLogin = async (event: any) => {
     event.preventDefault();
+    setLoginLoader(true);
     const { data, error: FetchError } = await supabase
       .from('login-register')
       .select('*')
       .eq('userName', userLogin.username);
 
     if (FetchError) {
+      setLoginLoader(false);
       throw new Error(FetchError.message);
     }
 
     if (data?.length! === 0) {
+      setLoginLoader(false);
       ErrorToastHandler('User not found');
       return;
     }
 
-    // localStorage.setItem(
-    //   'survey-token-saved-local-storage-register-login-user',
-    //   data?[0]
-    // );
-    // navigate('/');
+    const userFounded = data[0];
+    if (
+      userFounded.username === userLogin.username &&
+      userFounded.password === userLogin.password
+    ) {
+      localStorage.setItem(
+        'survey-token-saved-local-storage-register-login-user',
+        userFounded.user_id
+      );
+      navigate('/');
+    } else {
+      ErrorToastHandler('username or password is incorrect');
+    }
+    setLoginLoader(false);
   };
 
   return (
@@ -170,7 +192,13 @@ const LoginForm: React.FC<LoginFormProps> = ({ handleShowAuthChange }) => {
                   type="submit"
                   variant="contained"
                 >
-                  Login
+                  {loginLoader ? (
+                    <CircularProgressTheme>
+                      <CircularProgress />
+                    </CircularProgressTheme>
+                  ) : (
+                    'Login'
+                  )}
                 </Button>
               </CustomButton>
             </Box>
