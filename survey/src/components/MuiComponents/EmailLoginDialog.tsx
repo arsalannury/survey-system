@@ -20,7 +20,7 @@ import {
 import { CircularProgressBlueTheme } from '../../MuiTheme/CircularProgressTheme';
 import { publicButtonDialog } from './EmailLoginDialogStyle';
 
-export const FormDialog: React.FC<EmailLoginDialogInterface> = ({
+export const LoginWithEmailFormDialog: React.FC<EmailLoginDialogInterface> = ({
   emailLogin,
   handleClickOpenClose,
   open,

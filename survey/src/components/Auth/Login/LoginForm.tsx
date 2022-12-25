@@ -30,7 +30,7 @@ import { LoginFormProps } from '../../../Interfaces/AuthInterface';
 // import { useGetAllUsers } from '../../../hooks/GetAllUsers';
 // import { AxiosResponse } from 'axios';
 import { LoginFormatInterface } from '../../../Interfaces/LoginFormatInterface';
-import { FormDialog } from '../../MuiComponents/EmailLoginDialog';
+import { LoginWithEmailFormDialog } from '../../MuiComponents/EmailLoginDialog';
 import { supabase } from '../../../helper/supabaseClient';
 import { ErrorToastHandler } from '../../Toasts/ReactToastify';
 
@@ -56,8 +56,8 @@ const LoginForm: React.FC<LoginFormProps> = ({ handleShowAuthChange }) => {
   const handleUserLoginChange = ({
     currentTarget: input,
   }: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const shallowCopy = userLogin;
-    userLogin[input.name as keyof LoginFormatInterface] = input.value;
+    const shallowCopy = {...userLogin};
+    shallowCopy[input.name as keyof LoginFormatInterface] = input.value;
     setUserLogin(shallowCopy);
   };
 
@@ -68,33 +68,32 @@ const LoginForm: React.FC<LoginFormProps> = ({ handleShowAuthChange }) => {
   const onSubmitLogin = async (event: any) => {
     event.preventDefault();
     const { data, error: FetchError } = await supabase
-    .from('login-register')
-    .select('*')
-    .eq('userName', userLogin.username);
+      .from('login-register')
+      .select('*')
+      .eq('userName', userLogin.username);
 
     if (FetchError) {
       throw new Error(FetchError.message);
     }
 
-  if (data?.length! === 0) {
-    ErrorToastHandler('User not found');
-    return;
-  }
+    if (data?.length! === 0) {
+      ErrorToastHandler('User not found');
+      return;
+    }
 
-  // localStorage.setItem(
-  //   'survey-token-saved-local-storage-register-login-user',
-  //   data?[0]
-  // );
-  // navigate('/');
-
+    // localStorage.setItem(
+    //   'survey-token-saved-local-storage-register-login-user',
+    //   data?[0]
+    // );
+    // navigate('/');
   };
 
   return (
     <>
-      <FormDialog
+      <LoginWithEmailFormDialog
         emailLogin={emailLogin}
-        handleClickOpenClose={handleClickOpenClose}
         open={open}
+        handleClickOpenClose={handleClickOpenClose}
         setEmailLoginHandler={setEmailLoginHandler}
       />
       <Grid>
@@ -133,11 +132,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ handleShowAuthChange }) => {
             sm={6}
             xs={7}
           >
-            <Typography
-              sx={{ DefaultTypography }}
-            >
-              Login with
-            </Typography>{' '}
+            <Typography sx={{ DefaultTypography }}>Login with</Typography>{' '}
             {BadgeIconEmailLoginSupabase}
           </Grid>
           {/* <Grid></Grid> */}
