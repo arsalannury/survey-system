@@ -62,7 +62,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
         .string()
         .email('email format is incorrect')
         .required('enter your email address'),
-      password: yup.string().min(8).max(20).required('enter your password'),
+      password: yup.string().min(8).max(40).required('enter your password'),
     })
     .required();
   const defaultValues = {

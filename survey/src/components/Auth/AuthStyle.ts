@@ -218,3 +218,10 @@ export const LoginWithEmailGridContainerSxProp = {
 export const EmailIconLoginSupabase = {
   marginLeft: 15
 }as const
+
+
+// forget password link style 
+
+export const ForgetPassword = {
+ color:"#2176ff"
+}as const;

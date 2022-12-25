@@ -26,6 +26,7 @@ import {
   LoginWithEmailGridContainerProps,
   LoginWithEmailGridContainerSxProp,
   DotStyleLogin,
+  ForgetPassword,
 } from '../AuthStyle';
 import {
   BadgeIconPassword,
@@ -42,7 +43,7 @@ import {
   ErrorToastHandler,
   SuccessToastHandler,
 } from '../../Toasts/ReactToastify';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import CircularProgressTheme from '../../../MuiTheme/CircularProgressTheme';
 
 const LoginForm: React.FC<LoginFormProps> = ({ handleShowAuthChange }) => {
@@ -188,6 +189,15 @@ const LoginForm: React.FC<LoginFormProps> = ({ handleShowAuthChange }) => {
                 variant="outlined"
               />
               {BadgeIconPassword}
+            </Box>
+            <Box>
+              <Typography sx={{ ...DefaultTypography, marginLeft: 2 }}>
+                forget your password ?
+                <Link style={ForgetPassword} to={'/forget-password'}>
+                  {' '}
+                  click here
+                </Link>
+              </Typography>
             </Box>
             <Box sx={CreateAccountButtonWrapper}>
               <CustomButton>
