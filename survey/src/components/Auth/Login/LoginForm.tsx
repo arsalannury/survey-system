@@ -38,7 +38,10 @@ import { LoginFormProps } from '../../../Interfaces/AuthInterface';
 import { LoginFormatInterface } from '../../../Interfaces/LoginFormatInterface';
 import { LoginWithEmailFormDialog } from '../../MuiComponents/EmailLoginDialog';
 import { supabase } from '../../../helper/supabaseClient';
-import { ErrorToastHandler } from '../../Toasts/ReactToastify';
+import {
+  ErrorToastHandler,
+  SuccessToastHandler,
+} from '../../Toasts/ReactToastify';
 import { useNavigate } from 'react-router-dom';
 import CircularProgressTheme from '../../../MuiTheme/CircularProgressTheme';
 
@@ -97,15 +100,16 @@ const LoginForm: React.FC<LoginFormProps> = ({ handleShowAuthChange }) => {
     const userFounded = data[0];
     if (
       userFounded.userName === userLogin.username &&
-      userFounded.password === userLogin.password
+      Number(userFounded.password) === Number(userLogin.password)
     ) {
       localStorage.setItem(
         'survey-token-saved-local-storage-register-login-user',
         userFounded.user_id
       );
       navigate('/');
+      SuccessToastHandler('login successfull');
     } else {
-      ErrorToastHandler('username or password is incorrect');
+      ErrorToastHandler('username or password is inCorrect');
     }
     setLoginLoader(false);
   };
