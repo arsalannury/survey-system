@@ -84,7 +84,7 @@ export const DotStyleLogin = {
   },
   '@media screen and (min-width: 900px) and (max-width: 964px)': {
     top: '113px',
-  }
+  },
 } as const;
 
 export const LinkStyle = {
@@ -214,18 +214,17 @@ export const LoginWithEmailGridContainerSxProp = {
   },
 } as const;
 
-
 export const EmailIconLoginSupabase = {
-  marginLeft: 15
-}as const
+  marginLeft: 15,
+} as const;
 
 export const GoogleLoginImage = {
-  width:"25px",
-  marginLeft: 15
-}as const;
+  width: '25px',
+  marginLeft: 15,
+} as const;
 
-// forget password link style 
+// forget password link style
 
 export const ForgetPassword = {
- color:"#2176ff"
-}as const;
+  color: '#2176ff',
+} as const;
