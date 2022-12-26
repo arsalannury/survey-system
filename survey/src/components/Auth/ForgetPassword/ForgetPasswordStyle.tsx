@@ -2,7 +2,6 @@ export const ResetPasswordMainGrid = {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  //   flexDirection: 'column',
   width: '100%',
   height: '75vh',
 } as const;
@@ -29,9 +28,11 @@ export const TimerBox = {
 export const ConfirmImage = {
   width: '40px',
   position: 'absolute',
-  right: '0',
+  right: '-1px',
   bottom: '0',
   cursor: 'pointer',
+  margin: '0 0 2px 0',
+  background: '#fff',
 } as const;
 
 export const TextFieldBox = {
@@ -40,4 +41,10 @@ export const TextFieldBox = {
 
 export const TextFieldStyle = {
   width: '300px',
+  '@media screen and (max-width: 380px)': {
+    width: '180px',
+  },
+  '@media screen and (min-width: 380px) and (max-width: 430px)': {
+    width: '200px',
+  },
 } as const;
