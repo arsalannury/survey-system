@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import * as yup from 'yup';
+import { v4 as uuidv4 } from 'uuid';
 import MUIHelperText from '../../../MuiTheme/MUIHelperText';
 import {
   Box,
@@ -82,6 +83,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
     resolver: yupResolver(schema),
   });
   const onSubmitData: SubmitHandler<any> = (data?: UserDataInterface) => {
+    const uniqueId = uuidv4();
     const finalData = {
       ...data,
       user_id: Math.floor(Math.random() * 1234545644543654),
@@ -90,7 +92,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
       onSuccess(data: any, variables: UserDataInterface) {
         localStorage.setItem(
           'survey-token-saved-local-storage-register-login-user',
-          variables.user_id
+          uniqueId
         );
         navigate('/');
       },
