@@ -1,13 +1,7 @@
-import {
-  Box,
-  Button,
-  Container,
-  Grid,
-  TextField,
-  Typography,
-} from '@mui/material';
+import { Box, Container, TextField, Typography } from '@mui/material';
+import { useState } from 'react';
 import { Confirm, SurveyLogo } from '../../../assets/exporter';
-import CustomButtonResetPassword from '../../../MuiTheme/CustomButtonResetPassword';
+import { supabase } from '../../../helper/supabaseClient';
 import {
   DefaultTypography,
   RegisterHeader,
@@ -23,6 +17,17 @@ import {
 } from './ForgetPasswordStyle';
 
 const ForgetPasswordPage = () => {
+  const [email, setEmail] = useState<string>('');
+
+  const sendRecoveryEmail = async () => {
+    const { data, error } = await supabase.auth.resetPasswordForEmail(email);
+    console.log(data);
+    console.log(error);
+    // , {
+    //   redirectTo: 'https://example.com/update-password',
+    // }
+  };
+
   return (
     <>
       <Box sx={RegisterHeader}>
@@ -30,7 +35,7 @@ const ForgetPasswordPage = () => {
         <Typography sx={DefaultTypography}>Survey app</Typography>
       </Box>
       <Container maxWidth="lg">
-        <Box sx={ResetPasswordMainGrid} >
+        <Box sx={ResetPasswordMainGrid}>
           <Box>
             <Box {...ResetPasswordBox}>
               <Box sx={TextFieldBox}>
@@ -38,8 +43,15 @@ const ForgetPasswordPage = () => {
                   sx={TextFieldStyle}
                   label="enter your email"
                   variant="standard"
+                  value={email}
+                  onChange={(event) => setEmail(event.target.value)}
                 />
-                <img style={ConfirmImage} alt="confirm" src={Confirm} />
+                <img
+                  onClick={sendRecoveryEmail}
+                  style={ConfirmImage}
+                  alt="confirm"
+                  src={Confirm}
+                />
               </Box>
               <Box sx={TimerBox}>
                 <Typography sx={DefaultTypography}>1:00</Typography>
