@@ -1,5 +1,6 @@
 import { Box, Container, TextField, Typography } from '@mui/material';
 import { useState } from 'react';
+import { ToastContainer } from 'react-toastify';
 import { Confirm, SurveyLogo } from '../../../assets/exporter';
 import { supabase } from '../../../helper/supabaseClient';
 import { ErrorToastHandler } from '../../Toasts/ReactToastify';
@@ -23,7 +24,8 @@ const ForgetPasswordPage = () => {
   const sendRecoveryEmail = async () => {
 
     if(email.trim().length === 0) {
-      ErrorToastHandler("enter your email !")
+      ErrorToastHandler("enter your email !");
+      return
     }
 
     const { data, error } = await supabase.auth.resetPasswordForEmail(email
@@ -68,6 +70,18 @@ const ForgetPasswordPage = () => {
           </Box>
         </Box>
       </Container>
+      <ToastContainer
+        position="top-left"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </>
   );
 };
