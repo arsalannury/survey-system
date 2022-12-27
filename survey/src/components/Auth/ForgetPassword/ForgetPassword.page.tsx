@@ -20,12 +20,14 @@ const ForgetPasswordPage = () => {
   const [email, setEmail] = useState<string>('');
 
   const sendRecoveryEmail = async () => {
-    const { data, error } = await supabase.auth.resetPasswordForEmail(email);
+    const { data, error } = await supabase.auth.resetPasswordForEmail(email
+      , {
+        redirectTo: 'http://localhost:3000/forget-password',
+      }
+      );
+      setEmail("");
     console.log(data);
     console.log(error);
-    // , {
-    //   redirectTo: 'https://example.com/update-password',
-    // }
   };
 
   return (

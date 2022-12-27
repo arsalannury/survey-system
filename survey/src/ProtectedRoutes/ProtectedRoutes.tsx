@@ -19,6 +19,7 @@ export const Protected = ({ children }: Children) => {
     });
 
     supabase.auth.onAuthStateChange((_event, session) => {
+      console.log(_event);
       if (session) {
         localStorage.setItem(
           'survey-token-saved-local-storage-register-login-user',
