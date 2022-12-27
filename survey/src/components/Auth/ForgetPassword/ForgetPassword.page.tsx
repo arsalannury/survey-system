@@ -2,6 +2,7 @@ import { Box, Container, TextField, Typography } from '@mui/material';
 import { useState } from 'react';
 import { Confirm, SurveyLogo } from '../../../assets/exporter';
 import { supabase } from '../../../helper/supabaseClient';
+import { ErrorToastHandler } from '../../Toasts/ReactToastify';
 import {
   DefaultTypography,
   RegisterHeader,
@@ -20,9 +21,14 @@ const ForgetPasswordPage = () => {
   const [email, setEmail] = useState<string>('');
 
   const sendRecoveryEmail = async () => {
+
+    if(email.trim().length === 0) {
+      ErrorToastHandler("enter your email !")
+    }
+
     const { data, error } = await supabase.auth.resetPasswordForEmail(email
       , {
-        redirectTo: 'http://localhost:3000/forget-password',
+        redirectTo: 'https://survey-system-final.vercel.app/forget-password',
       }
       );
       setEmail("");
