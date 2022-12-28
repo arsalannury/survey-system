@@ -8,7 +8,7 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
-import { SurveyLogo,Google } from '../../../assets/exporter';
+import { SurveyLogo, Google } from '../../../assets/exporter';
 import CustomButton from '../../../MuiTheme/CustomButton';
 import {
   CreateAccountButtonWrapper,
@@ -119,10 +119,11 @@ const LoginForm: React.FC<LoginFormProps> = ({ handleShowAuthChange }) => {
   const signInWithGoogle = async () => {
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
-    })
+      options: { redirectTo: '/' },
+    });
     console.log(data);
     console.log(error);
-  }
+  };
 
   return (
     <>
@@ -163,7 +164,6 @@ const LoginForm: React.FC<LoginFormProps> = ({ handleShowAuthChange }) => {
             container
             {...LoginWithEmailGridContainerProps}
             item
-            
             lg={4}
             md={4}
             sm={6}
@@ -173,17 +173,17 @@ const LoginForm: React.FC<LoginFormProps> = ({ handleShowAuthChange }) => {
             {BadgeIconEmailLoginSupabase}
           </Grid>
           <Grid
-           onClick={signInWithGoogle}
-           sx={LoginWithEmailGridContainerSxProp}
-           container
-           {...LoginWithEmailGridContainerProps}
-           item
-           lg={4}
-           md={4}
-           sm={6}
-           xs={7}
+            onClick={signInWithGoogle}
+            sx={LoginWithEmailGridContainerSxProp}
+            container
+            {...LoginWithEmailGridContainerProps}
+            item
+            lg={4}
+            md={4}
+            sm={6}
+            xs={7}
           >
-          <Typography sx={{ DefaultTypography }}>Login with</Typography>{' '}
+            <Typography sx={{ DefaultTypography }}>Login with</Typography>{' '}
             <img style={GoogleLoginImage} src={Google} alt="google" />
           </Grid>
         </Grid>
