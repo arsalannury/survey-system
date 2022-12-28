@@ -119,7 +119,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ handleShowAuthChange }) => {
   const signInWithGoogle = async () => {
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
-      options: { redirectTo: '/' },
+      options: { redirectTo: 'https://survey-system-final.vercel.app/' },
     });
     console.log(data);
     console.log(error);
