@@ -22,18 +22,22 @@ const ForgetPasswordPage = () => {
   const [email, setEmail] = useState<string>('');
 
   const sendRecoveryEmail = async () => {
-
-    if(email.trim().length === 0) {
-      ErrorToastHandler("enter your email !");
-      return
+    if (email.trim().length === 0) {
+      ErrorToastHandler('enter your email !');
+      return;
     }
 
-    const { data, error } = await supabase.auth.resetPasswordForEmail(email
-      , {
-        redirectTo: 'https://survey-system-final.vercel.app/forget-password',
-      }
-      );
-      setEmail("");
+    const emailRegex = new RegExp(
+      /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+    );
+    if (!email.match(emailRegex)) {
+      return ErrorToastHandler('the email format is in correct !');
+    }
+
+    const { data, error } = await supabase.auth.resetPasswordForEmail(email, {
+      redirectTo: 'https://survey-system-final.vercel.app/forget-password',
+    });
+    setEmail('');
     console.log(data);
     console.log(error);
   };
