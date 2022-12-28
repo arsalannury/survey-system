@@ -3,7 +3,10 @@ import { useState } from 'react';
 import { ToastContainer } from 'react-toastify';
 import { Confirm, SurveyLogo } from '../../../assets/exporter';
 import { supabase } from '../../../helper/supabaseClient';
-import { ErrorToastHandler } from '../../Toasts/ReactToastify';
+import {
+  ErrorToastHandler,
+  SuccessToastHandler,
+} from '../../Toasts/ReactToastify';
 import {
   DefaultTypography,
   RegisterHeader,
@@ -38,6 +41,11 @@ const ForgetPasswordPage = () => {
       redirectTo: 'https://survey-system-final.vercel.app/forget-password',
     });
     setEmail('');
+
+    if (error) {
+      return ErrorToastHandler('Email send faild');
+    }
+    SuccessToastHandler('Email send successfully');
     console.log(data);
     console.log(error);
   };
