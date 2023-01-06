@@ -12,6 +12,7 @@ import {
 } from './ProtectedRoutes/ProtectedRoutes';
 import FeedPage from './components/Feed/Feed.page';
 import ForgetPasswordPage from './components/Auth/ForgetPassword/ForgetPassword.page';
+import ForgetPasswordRegisterUserNamePage from './components/Auth/ForgetPassword/ForgetPasswordRegisterUserName.page';
 
 const client = new QueryClient();
 const QueryClientProvider: React.FC<QueryClientProviderProps> =
@@ -38,7 +39,10 @@ const App: React.FC<any> = () => {
               </ProtectedAuthPage>
             }
           />
-          <Route path="/forget-password" element={<ForgetPasswordPage />} />
+          <Route path="/forget-password" element={<ForgetPasswordPage />}>
+            <Route path="register-username" element={<ForgetPasswordRegisterUserNamePage />} />
+            {/* <Route path="/register-username" element={<ForgetPasswordRegisterEmail />} /> */}
+          </Route>
         </Routes>
       </QueryClientProvider>
     </>

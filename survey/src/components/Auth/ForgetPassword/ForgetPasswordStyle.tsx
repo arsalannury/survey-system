@@ -48,3 +48,74 @@ export const TextFieldStyle = {
     width: '200px',
   },
 } as const;
+
+// ** forget password page parent route **
+
+export const ContainerStyle = {
+  display: 'flex',
+  alignItems: 'center',
+  justifyContetn: 'center',
+  // marginTop: '30px',
+} as const;
+
+export const StepperMainBox = {
+  width: '700px',
+  height: '500px',
+  display: 'flex',
+} as const;
+
+export const DefaultStepp = {
+  display: 'flex',
+  alignItems: 'center',
+  position: 'relative',
+} as const;
+
+export const SteppImageBox = {
+  padding: '8px',
+  boxShadow: '0 0 18px #003566',
+  borderRadius: '50%',
+} as const;
+
+export const SteppImage = {
+  width: '50px',
+  height: '50px',
+} as const;
+
+export const SteppLine = {
+  width: '30px',
+  height: '2px',
+  margin: '0 10px',
+  background: '#adb5bd',
+} as const;
+
+export const SteppLineSecondary = {
+  width: '30px',
+  height: '2px',
+  background: '#adb5bd',
+  marginTop: '260px',
+} as const;
+
+export const SteppCurveLine = {
+  width: '30px',
+  height: '2px',
+  background: '#adb5bd',
+  transform: 'rotate(90deg)',
+} as const;
+
+export const SteppText = {
+  fontSize: '1.3em',
+  fontStyle: 'italic',
+  color: '#70e000',
+  position: 'absolute',
+  top: '31%',
+  fontWeight: 'bold',
+} as const;
+
+
+
+export const SteppTwo = {
+  margin: "255px 0 0 8px",
+  display: 'flex',
+  alignItems: 'center',
+  position: 'relative',
+}

@@ -111,7 +111,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ handleShowAuthChange }) => {
       navigate('/');
       SuccessToastHandler('login successfull');
     } else {
-      ErrorToastHandler('username or password is inCorrect');
+      ErrorToastHandler('User not found');
     }
     setLoginLoader(false);
   };
@@ -119,7 +119,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ handleShowAuthChange }) => {
   const signInWithGoogle = async () => {
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
-      options: { redirectTo: 'https://survey-system-final.vercel.app/' },
+      // options: { redirectTo: 'https://survey-system-final.vercel.app/' },
     });
     console.log(data);
     console.log(error);
@@ -167,7 +167,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ handleShowAuthChange }) => {
             lg={4}
             md={4}
             sm={6}
-            xs={7}
+            xs={12}
           >
             <Typography sx={{ DefaultTypography }}>Login with</Typography>{' '}
             {BadgeIconEmailLoginSupabase}
@@ -181,7 +181,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ handleShowAuthChange }) => {
             lg={4}
             md={4}
             sm={6}
-            xs={7}
+            xs={12}
           >
             <Typography sx={{ DefaultTypography }}>Login with</Typography>{' '}
             <img style={GoogleLoginImage} src={Google} alt="google" />

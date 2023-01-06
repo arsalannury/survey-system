@@ -198,7 +198,7 @@ export const LoginWithEmailGridWrapperProps = {
 
 export const LoginWithEmailGridContainerProps = {
   alignItems: 'center',
-  justifyContent: 'flex-start',
+  justifyContent: 'center',
   p: 2,
   borderRadius: 1,
 } as const;

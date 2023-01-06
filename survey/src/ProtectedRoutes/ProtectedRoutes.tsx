@@ -1,5 +1,5 @@
 import { Navigate } from 'react-router-dom';
-import React, { ReactElement, useEffect } from 'react';
+import { ReactElement, useEffect } from 'react';
 import { supabase } from '../helper/supabaseClient';
 
 type Children = {
