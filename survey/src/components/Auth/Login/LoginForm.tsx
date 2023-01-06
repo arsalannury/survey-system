@@ -35,8 +35,6 @@ import {
   BadgeIconEmailLoginSupabase,
 } from '../AuthIcons';
 import { LoginFormProps } from '../../../Interfaces/AuthInterface';
-// import { useGetAllUsers } from '../../../hooks/GetAllUsers';
-// import { AxiosResponse } from 'axios';
 import { LoginFormatInterface } from '../../../Interfaces/LoginFormatInterface';
 import { LoginWithEmailFormDialog } from '../EmailLoginProvider/EmailLoginDialog';
 import { supabase } from '../../../helper/supabaseClient';
@@ -48,8 +46,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import CircularProgressTheme from '../../../MuiTheme/CircularProgressTheme';
 
 const LoginForm: React.FC<LoginFormProps> = ({ handleShowAuthChange }) => {
-  // const { isLoading, isError, data } = useGetAllUsers();
-  // const finalData = data as AxiosResponse;
 
   const [open, setOpen] = useState(false);
   const [emailLogin, setEmailLogin] = useState<string>('');
