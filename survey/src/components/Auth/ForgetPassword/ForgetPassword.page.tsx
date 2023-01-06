@@ -1,5 +1,4 @@
 import { Box, Container, Typography } from '@mui/material';
-import Email from '../../../assets/images/email.png';
 import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import { SurveyLogo } from '../../../assets/exporter';
@@ -9,7 +8,9 @@ import {
   DefaultTypography,
 } from '../AuthStyle';
 import { ContainerStyle, StepperMainBox } from './ForgetPasswordStyle';
+import SteppFour from './Stepper/SteppFour';
 import SteppOne from './Stepper/SteppOne';
+import SteppThree from './Stepper/SteppThree';
 import SteppTwo from './Stepper/SteppTwo';
 
 const ForgetPasswordPage = () => {
@@ -23,6 +24,8 @@ const ForgetPasswordPage = () => {
         <Box sx={StepperMainBox}>
           <SteppOne />
           <SteppTwo />
+          <SteppThree />
+          <SteppFour />
         </Box>
       </Container>
       <Outlet />

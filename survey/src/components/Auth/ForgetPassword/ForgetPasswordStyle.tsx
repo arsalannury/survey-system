@@ -49,8 +49,9 @@ export const TextFieldStyle = {
   },
 } as const;
 
-// ** forget password page parent route **
+// ** forget password steppers **
 
+// ** main styles for parent steppers start **
 export const ContainerStyle = {
   display: 'flex',
   alignItems: 'center',
@@ -59,10 +60,11 @@ export const ContainerStyle = {
 } as const;
 
 export const StepperMainBox = {
-  width: '700px',
+  width: '100%',
   height: '500px',
   display: 'flex',
 } as const;
+// ** main styles for parent steppers end **
 
 export const DefaultStepp = {
   display: 'flex',
@@ -103,7 +105,7 @@ export const SteppCurveLine = {
 } as const;
 
 export const SteppText = {
-  fontSize: '1.3em',
+  fontSize: '.9em',
   fontStyle: 'italic',
   color: '#70e000',
   position: 'absolute',
@@ -111,11 +113,23 @@ export const SteppText = {
   fontWeight: 'bold',
 } as const;
 
-
-
-export const SteppTwo = {
-  margin: "255px 0 0 8px",
+export const SteppTwoStyle = {
+  margin: '255px 0 0 8px',
   display: 'flex',
   alignItems: 'center',
   position: 'relative',
-}
+};
+
+export const SteppThreeStyle = {
+  margin: '255px 0 0 0',
+  display: 'flex',
+  alignItems: 'center',
+  position: 'relative',
+};
+
+export const SteppFourStyle = {
+  display: 'flex',
+  alignItems: 'center',
+  position: 'relative',
+  marginLeft: '-22px',
+};

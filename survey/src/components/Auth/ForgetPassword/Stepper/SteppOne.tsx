@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Typography } from '@mui/material';
-import Start from '../../../../assets/images/start.png';
+import { Start } from '../../../../assets/exporter';
 import {
   DefaultStepp,
   SteppCurveLine,

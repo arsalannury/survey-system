@@ -1,7 +1,6 @@
 import { Box, Typography } from '@mui/material'
-import React from 'react'
-import { SteppImage, SteppImageBox, SteppText, SteppTwo as SteppTwoStyle } from '../ForgetPasswordStyle'
-import Username from '../../../../assets/images/username.png';
+import { SteppImage, SteppImageBox, SteppLine, SteppText, SteppTwoStyle } from '../ForgetPasswordStyle'
+import { Username } from '../../../../assets/exporter'
 
 
 const SteppTwo = () => {
@@ -12,6 +11,9 @@ const SteppTwo = () => {
         <Box sx={SteppImageBox}>
           <img src={Username} style={SteppImage} alt="stepp_one" />
         </Box>
+        <Typography sx={SteppLine} component="span" />
+        <Typography sx={SteppLine} component="span" />
+        <Typography sx={SteppLine} component="span" />
         </Box>
     </>
   )

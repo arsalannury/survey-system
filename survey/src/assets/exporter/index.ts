@@ -4,3 +4,7 @@ export { default as Hands } from '../images/hands.jpg';
 export { default as Diffrent } from '../images/diffrent.jpg';
 export { default as Google } from '../images/google.png';
 export { default as Confirm } from '../images/confirm.png';
+export { default as Start } from '../images/start.png';
+export { default as Username } from '../images/username.png';
+export { default as Email } from '../images/email.png';
+export { default as End } from '../images/end.png';
