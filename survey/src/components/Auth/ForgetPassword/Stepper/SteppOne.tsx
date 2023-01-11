@@ -14,7 +14,7 @@ import { SteppsState } from '../../../../redux/ReduxInterfaces';
 import { steppOneTransform } from '../../../../redux/reducers/ForgerPasswordStepperReducer';
 
 const SteppOne = () => {
-  const steppOneTransformValue = useSelector(
+  const steppStates = useSelector(
     (state: SteppsState) => state.forgetPasswordStepperReducer
   );
   const dispatch = useDispatch();
@@ -26,7 +26,7 @@ const SteppOne = () => {
           onClick={() => {
             dispatch(steppOneTransform(null));
           }}
-          style={{ transform: steppOneTransformValue.steppOne }}
+          style={{ transform: steppStates.steppOne }}
           sx={SteppImageBox}
         >
           <img src={Start} style={SteppImage} alt="stepp_one" />

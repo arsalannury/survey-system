@@ -3,5 +3,6 @@ export interface SteppsState {
         steppOne: string,
         steppTwo: string,
         steppThree: string,
+        steppFour: string,
       }
 }

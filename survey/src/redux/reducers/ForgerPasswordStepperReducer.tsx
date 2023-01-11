@@ -4,6 +4,7 @@ const states = {
   steppOne: 'none',
   steppTwo: 'none',
   steppThree: 'none',
+  steppFour: 'none',
 };
 
 export const forgetPasswordStepperReducer = createSlice({
@@ -11,32 +12,43 @@ export const forgetPasswordStepperReducer = createSlice({
   initialState: states,
   reducers: {
     steppOneTransform: (state, action): any => {
-      console.log(action);
-      
       return {
         ...state,
         steppOne: 'scale(1.2)',
-        steppTwo: "none",
-        steppThree: "none"
+        steppTwo: 'none',
+        steppThree: 'none',
+        steppFour: "none"
       };
     },
     steppTwoTransform: (state, action): any => {
       return {
         ...state,
-        steppTwo : 'scale(1.2)',
-        steppOne : "none",
-        steppThree : "none",
-      }
+        steppTwo: 'scale(1.2)',
+        steppOne: 'none',
+        steppThree: 'none',
+        steppFour: "none"
+      };
     },
     steppThreeTransform: (state, action): any => {
-      return (
-        (state.steppOne = 'none'),
-        (state.steppTwo = 'none'),
-        (state.steppThree = 'scale(1.2)')
-      );
+      return {
+        ...state,
+        steppTwo: 'none',
+        steppOne: 'none',
+        steppThree: 'scale(1.2)',
+        steppFour: "none"
+      };
+    },
+    steppFourTransform: (state, action): any => {
+      return {
+        ...state,
+        steppTwo: 'none',
+        steppOne: 'none',
+        steppThree: 'none',
+        steppFour: 'scale(1.2)',
+      };
     },
   },
 });
 export default forgetPasswordStepperReducer.reducer;
-export const { steppOneTransform, steppThreeTransform, steppTwoTransform } =
+export const { steppOneTransform, steppThreeTransform, steppTwoTransform, steppFourTransform } =
   forgetPasswordStepperReducer.actions;

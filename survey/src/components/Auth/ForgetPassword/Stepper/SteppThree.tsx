@@ -8,13 +8,21 @@ import {
   SteppText,
   SteppThreeStyle,
 } from '../ForgetPasswordStyle';
+import { useSelector,useDispatch } from 'react-redux';
+import { steppThreeTransform } from '../../../../redux/reducers/ForgerPasswordStepperReducer';
+import { SteppsState } from '../../../../redux/ReduxInterfaces';
 
 const SteppThree = () => {
+  const steppStates = useSelector((state:SteppsState) => state.forgetPasswordStepperReducer.steppThree);
+  const dispatch = useDispatch();
   return (
     <>
       <Box sx={SteppThreeStyle}>
         <Typography sx={{ ...SteppText, top: '0' }}>enter email</Typography>
-        <Box sx={SteppImageBox}>
+        <Box 
+        style={{transform:steppStates}}
+        onClick={() => {dispatch(steppThreeTransform(null))}}
+        sx={SteppImageBox}>
           <img src={Email} style={SteppImage} alt="stepp_one" />
         </Box>
         <Typography sx={SteppLine} component="span" />
