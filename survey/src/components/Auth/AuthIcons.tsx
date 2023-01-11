@@ -35,3 +35,15 @@ export const BadgeIconUerName: JSX.Element = (
     person
   </span>
 );
+
+export const NavigateNext: JSX.Element = (
+  <span className="material-symbols-outlined">
+    navigate_next
+  </span>
+);
+
+export const NavigateBefore: JSX.Element = (
+  <span className="material-symbols-outlined">
+    navigate_before
+  </span>
+);

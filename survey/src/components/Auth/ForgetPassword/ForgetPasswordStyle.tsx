@@ -49,15 +49,6 @@ export const TextFieldStyle = {
   },
 } as const;
 
-
-
-
-
-
-
-
-
-
 // ** forget password steppers **
 
 // ** main styles for parent steppers start **
@@ -65,6 +56,7 @@ export const ContainerStyle = {
   display: 'flex',
   alignItems: 'center',
   justifyContetn: 'center',
+  flexDirection: 'column',
   // marginTop: '30px',
 } as const;
 
@@ -85,6 +77,7 @@ export const SteppImageBox = {
   padding: '8px',
   boxShadow: '0 0 18px #003566',
   borderRadius: '50%',
+  cursor: 'pointer',
 } as const;
 
 export const SteppImage = {

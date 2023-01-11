@@ -1,4 +1,3 @@
-import React from 'react';
 import { Box, Typography } from '@mui/material';
 import { Start } from '../../../../assets/exporter';
 import {
@@ -10,13 +9,26 @@ import {
   SteppText,
   SteppLineSecondary,
 } from '../ForgetPasswordStyle';
+import { useDispatch, useSelector } from 'react-redux';
+import { SteppsState } from '../../../../redux/ReduxInterfaces';
+import { steppOneTransform } from '../../../../redux/reducers/ForgerPasswordStepperReducer';
 
 const SteppOne = () => {
+  const steppOneTransformValue = useSelector(
+    (state: SteppsState) => state.forgetPasswordStepperReducer
+  );
+  const dispatch = useDispatch();
   return (
     <>
       <Box sx={DefaultStepp}>
         <Typography sx={SteppText}>Hi there!</Typography>
-        <Box sx={SteppImageBox}>
+        <Box
+          onClick={() => {
+            dispatch(steppOneTransform(null));
+          }}
+          style={{ transform: steppOneTransformValue.steppOne }}
+          sx={SteppImageBox}
+        >
           <img src={Start} style={SteppImage} alt="stepp_one" />
         </Box>
         <Typography sx={SteppLine} component="span" />

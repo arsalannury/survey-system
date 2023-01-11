@@ -1,7 +1,7 @@
-import { Box, Container, Typography } from '@mui/material';
-import { useState } from 'react';
+import { Box, Button, ButtonGroup, Container, Typography } from '@mui/material';
 import { Outlet } from 'react-router-dom';
 import { SurveyLogo } from '../../../assets/exporter';
+import { NavigateBefore, NavigateNext } from '../AuthIcons';
 import {
   RegisterHeader,
   SurveyLogoStyle,

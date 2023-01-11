@@ -1,19 +1,42 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const states = {
-  steppOne: true,
-  steppTwo: false,
-  steppThree: false,
+  steppOne: 'none',
+  steppTwo: 'none',
+  steppThree: 'none',
 };
 
 export const forgetPasswordStepperReducer = createSlice({
   name: 'forgetPassword',
   initialState: states,
   reducers: {
-    test: (state, action): any => {
-      return (state.steppOne = false);
+    steppOneTransform: (state, action): any => {
+      console.log(action);
+      
+      return {
+        ...state,
+        steppOne: 'scale(1.2)',
+        steppTwo: "none",
+        steppThree: "none"
+      };
+    },
+    steppTwoTransform: (state, action): any => {
+      return {
+        ...state,
+        steppTwo : 'scale(1.2)',
+        steppOne : "none",
+        steppThree : "none",
+      }
+    },
+    steppThreeTransform: (state, action): any => {
+      return (
+        (state.steppOne = 'none'),
+        (state.steppTwo = 'none'),
+        (state.steppThree = 'scale(1.2)')
+      );
     },
   },
 });
 export default forgetPasswordStepperReducer.reducer;
-export const { test } = forgetPasswordStepperReducer.actions;
+export const { steppOneTransform, steppThreeTransform, steppTwoTransform } =
+  forgetPasswordStepperReducer.actions;
