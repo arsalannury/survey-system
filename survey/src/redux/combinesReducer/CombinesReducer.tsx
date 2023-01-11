@@ -1,6 +1,8 @@
 import {combineReducers} from "redux";
-import { forgetPasswordStepperReducer } from "../reducers/ForgerPasswordStepperReducer";
+import  forgetPasswordStepperReducer  from "../reducers/ForgerPasswordStepperReducer";
 
-export default combineReducers<any,any>({
+const rootReducer = combineReducers({
     forgetPasswordStepperReducer
 })
+
+export default rootReducer
